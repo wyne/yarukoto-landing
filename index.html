@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Yarukoto — a self-hosted todo app</title>
+<meta name="description" content="A self-hosted todo app. One container, one SQLite file, your data on your own server. Web, iOS and Android from one Expo codebase." />
+<link rel="canonical" href="https://yarukotoapp.com/" />
+
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://yarukotoapp.com/" />
+<meta property="og:title" content="Yarukoto — a self-hosted todo app" />
+<meta property="og:description" content="One container, one SQLite file, your data on your own server." />
+<meta property="og:image" content="https://yarukotoapp.com/assets/og-image.png" />
+<meta name="twitter:card" content="summary_large_image" />
+
+<link rel="icon" href="assets/favicon.png" />
+<link rel="apple-touch-icon" href="assets/app-icon-180.png" />
+
+<link rel="stylesheet" href="styles.css" />
+<link rel="preload" href="assets/fonts/plex-sans-400.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="assets/fonts/plex-sans-700.woff2" as="font" type="font/woff2" crossorigin />
+</head>
+<body>
+
+<header class="site-header shell">
+  <a class="brand" href="/">
+    <img src="assets/app-icon-180.png" alt="" width="30" height="30" />
+    <span>Yarukoto</span>
+  </a>
+  <nav class="site-nav">
+    <a href="#quickadd">Quick add</a>
+    <a href="#views">Views</a>
+    <a href="#install">Install</a>
+    <a href="#limits">Limitations</a>
+    <a class="repo-pill" href="https://github.com/wyne/yarukoto">github.com/wyne/yarukoto</a>
+  </nav>
+</header>
+
+<main>
+
+  <section class="hero shell">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <div class="eyebrow">Self-hosted todo app</div>
+        <h1>Your tasks, on your&nbsp;server.</h1>
+        <p class="lede">One container, one SQLite file. The server serves both the API and the web client, so a single <code class="chip">docker compose up</code> gives you a working instance — and the same codebase builds the iOS and Android app.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="https://wyne.github.io/yarukoto/">Try the live demo</a>
+          <a class="btn btn-secondary" href="https://github.com/wyne/yarukoto">View the source</a>
+        </div>
+        <p class="assurance">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3l7 3v6c0 4.2-2.9 7.6-7 9-4.1-1.4-7-4.8-7-9V6l7-3z"/></svg>
+          <span>Your data never leaves your server.</span>
+        </p>
+        <dl class="hero-facts">
+          <div><dt>No accounts</dt><dd>One shared access token.</dd></div>
+          <div><dt>Offline-tolerant</dt><dd>Edits queue and push later.</dd></div>
+          <div><dt>Web + mobile</dt><dd>One Expo codebase.</dd></div>
+          <div><dt>Runs on a NAS</dt><dd>amd64 and arm64 images.</dd></div>
+        </dl>
+      </div>
+
+      <div class="hero-shots">
+        <div class="browser">
+          <div class="browser-bar">
+            <i></i><i></i><i></i>
+            <span class="url">todo.selfhost.dev/all</span>
+          </div>
+          <img src="assets/web-browse.png" alt="Yarukoto Browse view on the web, with folders, tags and task rows" />
+        </div>
+        <div class="phone">
+          <img src="assets/ios-today.png" alt="Yarukoto Today view on a phone" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="quickadd" class="section shell">
+    <div class="split split-shot-left">
+      <div class="framed">
+        <img src="assets/web-today.png" alt="Yarukoto Today view on the web, with due tasks and task rows" />
+      </div>
+      <div>
+        <h2>Type the task. It parses the rest.</h2>
+        <div class="syntax-sample">pay rent <span class="tok-date">fri 6pm</span> <span class="tok-meta">#home</span> <span class="tok-prio">!high</span> <span class="tok-meta">~admin</span></div>
+        <p class="body-copy" style="margin:0">The due date and time, the <code>#tag</code>, the <code>!priority</code> and the <code>~list</code> come out of one line. Anything unrecognized stays as the title, and the chips show you what was understood before you commit.</p>
+        <ul class="plain-list">
+          <li>Subtasks, notes, tags, priorities, due dates and times.</li>
+          <li>Per-view grouping and sort, synced across devices.</li>
+          <li>Soft delete — restore from Trash, or delete forever.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="views" class="section shell">
+    <h2>Four ways to look at the same tasks</h2>
+    <p class="section-intro">Every view is a real URL — <code>/today</code>, <code>/inbox?listId=…</code> — so a reload stays where you were, Back retraces where you've been, and a filtered list is a link you can bookmark.</p>
+    <div class="views-grid">
+      <figure>
+        <div class="crop"><img src="assets/web-today.png" alt="Today view" /></div>
+        <figcaption><b>Today.</b> What's due now, with completed items folded away.</figcaption>
+      </figure>
+      <figure>
+        <div class="crop"><img src="assets/web-today.png" alt="Calendar-adjacent today view" /></div>
+        <figcaption><b>Calendar.</b> A month grid above the agenda for jumping around.</figcaption>
+      </figure>
+      <figure>
+        <div class="crop"><img src="assets/web-browse.png" alt="Browse view with lists and tags" /></div>
+        <figcaption><b>Plan.</b> Unscheduled on the left — drag onto a day to schedule it.</figcaption>
+      </figure>
+      <figure>
+        <div class="crop"><img src="assets/web-browse.png" alt="Browse view" /></div>
+        <figcaption><b>Browse.</b> Folders, lists and tags with their counts.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section id="install" class="band">
+    <div class="band-grid shell">
+      <div>
+        <h2>Up in three commands</h2>
+        <p class="body-copy" style="margin:16px 0 0">Requires Docker with Compose v2. The token is the only credential, so generate a real random one. Your database lives in <code>./data</code> on the host and survives rebuilds.</p>
+        <p class="body-copy" style="margin:18px 0 0;font-size:15.5px">On a Synology NAS, use <code>docker-compose.synology.yml</code> in Container Manager — it pulls the prebuilt <code>ghcr.io/wyne/yarukoto</code> image for amd64 and arm64 instead of building on the NAS.</p>
+      </div>
+      <pre class="terminal"><span class="c">git clone https://github.com/wyne/yarukoto.git</span>
+<span class="c">cd yarukoto</span>
+
+<span class="c"># the only credential — make it random</span>
+echo "YARUKOTO_TOKEN=$(openssl rand -hex 32)" &gt; .env
+
+docker compose up -d
+
+<span class="c"># then open http://localhost:8080</span>
+<span class="c">curl -fsS localhost:8080/api/v1/health</span></pre>
+    </div>
+    <div class="band-foot shell">
+      <p class="caption-above">That command reads this <code class="chip-light">docker-compose.yml</code>, checked into the repo root:</p>
+      <pre class="terminal terminal-dense">services:
+  yarukoto:
+    build:
+      context: .
+      dockerfile: server/Dockerfile
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    environment:
+      <span class="c"># openssl rand -hex 32</span>
+      YARUKOTO_TOKEN: ${YARUKOTO_TOKEN:?set a long random token in .env}
+      PORT: 8080
+      DATABASE_PATH: /data/yarukoto.db
+      TRASH_RETENTION_DAYS: 30
+      HISTORY_REVISIONS_PER_TASK: 50
+    volumes:
+      - ./data:/data</pre>
+      <p class="caption-below">Updating is <code class="chip-light">git pull &amp;&amp; docker compose up -d --build</code>. <code class="chip-light">./data</code> is untouched by rebuilds.</p>
+    </div>
+  </section>
+
+  <section class="section-tight shell">
+    <h2>Against a hosted todo app</h2>
+    <table class="compare">
+      <thead>
+        <tr>
+          <th scope="col"><span class="sr-only"></span></th>
+          <th scope="col" class="us">Yarukoto</th>
+          <th scope="col">Hosted service</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">Where the data lives</th>
+          <td class="us">One SQLite file you can copy</td>
+          <td class="them">Someone else's database</td>
+        </tr>
+        <tr>
+          <th scope="row">Cost</th>
+          <td class="us">A container on hardware you own</td>
+          <td class="them">Per month, per feature tier</td>
+        </tr>
+        <tr>
+          <th scope="row">Accounts</th>
+          <td class="us">One shared token, no sign-up</td>
+          <td class="them">Email, password, session</td>
+        </tr>
+        <tr>
+          <th scope="row">Offline</th>
+          <td class="us">UI never waits on the network</td>
+          <td class="them">Varies; often read-only</td>
+        </tr>
+        <tr>
+          <th scope="row">If it shuts down</th>
+          <td class="us">It doesn't — you're running it</td>
+          <td class="them">Export and start over</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="limits" class="section-tight shell">
+    <div class="limits-grid">
+      <div>
+        <h2>Working and usable, but young</h2>
+        <p class="body-copy" style="margin:16px 0 0">Worth knowing before you rely on it. Single-user by design — one shared access token, no accounts.</p>
+      </div>
+      <div class="limit-cards">
+        <div>
+          <h3>One token, no user accounts</h3>
+          <p>Anyone with the token has full access. A personal-instance design, not multi-tenant.</p>
+        </div>
+        <div>
+          <h3>Concurrent reorders can fight</h3>
+          <p>Ordering is one global value under last-write-wins. Everything else merges cleanly per record.</p>
+        </div>
+        <div>
+          <h3>Task history has no UI</h3>
+          <p>Snapshots are captured from day one, but reading them means calling the endpoint directly.</p>
+        </div>
+        <div>
+          <h3>No reminders, no tests yet</h3>
+          <p>Reminders need push tokens and a scheduler. There's no automated test runner so far.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-tight shell">
+    <div class="cta">
+      <div>
+        <h2>Try it before you host it.</h2>
+        <p>Sample data mode runs the whole app client-side — no server needed. Everything stays on the device and resets when you reload.</p>
+      </div>
+      <div class="cta-actions">
+        <a class="btn btn-primary" href="https://wyne.github.io/yarukoto/">Explore with sample data</a>
+        <a class="btn btn-secondary" href="https://github.com/wyne/yarukoto#readme">Read the setup guide</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer shell">
+  <span>Yarukoto — a self-hosted todo app. MIT.</span>
+  <nav>
+    <a href="https://github.com/wyne/yarukoto">Source</a>
+    <a href="https://github.com/wyne/yarukoto/blob/main/README.md">Docs</a>
+    <a href="https://github.com/wyne/yarukoto/blob/main/ROADMAP.md">Roadmap</a>
+    <a href="/privacy.html">Privacy</a>
+  </nav>
+</footer>
+
+</body>
+</html>
