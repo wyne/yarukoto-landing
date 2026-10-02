@@ -253,25 +253,47 @@
   </section>
 
   <section id="views" class="section shell">
-    <h2>Four ways to look at the same tasks</h2>
-    <p class="section-intro">Every view is a real URL on the web — <code>/today</code>, <code>/browse?savedFilterId=…</code> — so a reload stays where you were and a filtered list is a link you can bookmark.</p>
-    <div class="views-grid">
-      <figure>
-        <div class="crop"><img src="assets/web-today.webp" width="1600" height="1000" alt="Today view" loading="lazy" /></div>
-        <figcaption><b>Today.</b> What's due now, with completed items folded away.</figcaption>
-      </figure>
-      <figure>
-        <div class="crop"><img src="assets/web-calendar.webp" width="1600" height="1000" alt="Calendar view with a month grid above the day's agenda and unscheduled tasks beside it" loading="lazy" /></div>
-        <figcaption><b>Calendar.</b> A month grid above the agenda. Drag an unscheduled task onto a day to plan it.</figcaption>
-      </figure>
-      <figure>
-        <div class="crop"><img src="assets/web-filters.webp" width="1600" height="1000" alt="Browse with the Chores this week saved filter selected" loading="lazy" /></div>
-        <figcaption><b>Saved filters.</b> Tags, lists and due dates, saved as one chip and synced to every device.</figcaption>
-      </figure>
-      <figure>
-        <div class="crop"><img src="assets/web-task-pane.webp" width="2000" height="1250" alt="Task pane beside the list with notes and subtasks" loading="lazy" /></div>
-        <figcaption><b>Task pane.</b> Notes, subtasks and reminders beside the list on a wide screen.</figcaption>
-      </figure>
+    <div class="section-head">
+      <div class="eyebrow">Views</div>
+      <h2>Today, this week, or just the chores</h2>
+      <p class="section-intro">The same tasks, cut the way you think about them. Every view is a real link, so the one you live in is a bookmark away.</p>
+    </div>
+    <div class="showcase" data-showcase>
+      <div class="showcase-tabs" role="tablist" aria-label="Views">
+        <button class="showcase-tab" role="tab" id="tab-today" aria-controls="panel-today" aria-selected="true">
+          <b>Today</b>
+          <span>What's due now, with the overdue on top and the finished folded away.</span>
+          <i class="showcase-progress" aria-hidden="true"></i>
+        </button>
+        <button class="showcase-tab" role="tab" id="tab-calendar" aria-controls="panel-calendar" aria-selected="false" tabindex="-1">
+          <b>Plan the week</b>
+          <span>Drag an unscheduled task onto a day. The month stays in view while you do.</span>
+          <i class="showcase-progress" aria-hidden="true"></i>
+        </button>
+        <button class="showcase-tab" role="tab" id="tab-filters" aria-controls="panel-filters" aria-selected="false" tabindex="-1">
+          <b>Saved filters</b>
+          <span>Chores due this week, or everything tagged #bills. Save it once and it's a chip on every device, and a list in Home Assistant.</span>
+          <i class="showcase-progress" aria-hidden="true"></i>
+        </button>
+        <button class="showcase-tab" role="tab" id="tab-detail" aria-controls="panel-detail" aria-selected="false" tabindex="-1">
+          <b>The whole task</b>
+          <span>Markdown notes, subtasks and a reminder, open beside the list so you never lose your place.</span>
+          <i class="showcase-progress" aria-hidden="true"></i>
+        </button>
+      </div>
+      <div class="browser showcase-stage">
+        <div class="browser-bar">
+          <i></i><i></i><i></i>
+          <span class="url" data-showcase-url>yarukoto.local:8080/today</span>
+        </div>
+        <div class="showcase-panels">
+          <img role="tabpanel" id="panel-today" aria-labelledby="tab-today" data-url="yarukoto.local:8080/today" class="is-active" src="assets/web-today.webp" width="1600" height="1000" alt="Today view: due and overdue tasks from shared and private lists" loading="lazy" />
+          <img role="tabpanel" id="panel-calendar" aria-labelledby="tab-calendar" data-url="yarukoto.local:8080/calendar" src="assets/web-calendar.webp" width="1600" height="1000" alt="Calendar view: a month grid above the day's agenda, with unscheduled tasks beside it ready to drag onto a day" loading="lazy" />
+          <img role="tabpanel" id="panel-filters" aria-labelledby="tab-filters" data-url="yarukoto.local:8080/browse?savedFilterId=sf-1" src="assets/web-filters.webp" width="1600" height="1000" alt="Browse with the Chores this week saved filter selected, showing four chores across the House list" loading="lazy" />
+          <img role="tabpanel" id="panel-detail" aria-labelledby="tab-detail" data-url="yarukoto.local:8080/today" src="assets/web-task-pane.webp" width="2000" height="1250" alt="Task pane beside the list with a due time, priority, Markdown notes and subtasks" loading="lazy" />
+        </div>
+      </div>
+      <p class="showcase-caption" data-showcase-caption aria-hidden="true">What's due now, with the overdue on top and the finished folded away.</p>
     </div>
   </section>
 
@@ -379,33 +401,6 @@ docker compose up -d
     </table>
   </section>
 
-  <section id="limits" class="section-tight shell">
-    <div class="limits-grid">
-      <div>
-        <h2>Working and usable, but young</h2>
-        <p class="body-copy" style="margin:16px 0 0">Worth knowing before you rely on it. The <a href="https://github.com/wyne/yarukoto/blob/main/ROADMAP.md">roadmap</a> says what's planned.</p>
-      </div>
-      <div class="limit-cards">
-        <div>
-          <h3>One household per server</h3>
-          <p>Everyone in it gets an account, but it isn't multi-tenant. The owner's token is an admin credential, so keep it secret.</p>
-        </div>
-        <div>
-          <h3>Concurrent reorders can fight</h3>
-          <p>Ordering is one global value under last-write-wins. Everything else merges cleanly per record.</p>
-        </div>
-        <div>
-          <h3>Home Assistant polls</h3>
-          <p>It checks every 30 seconds, so a change made in the app takes up to that long to appear there.</p>
-        </div>
-        <div>
-          <h3>MCP needs a bearer token</h3>
-          <p>Claude Code and Claude Desktop work today. claude.ai's custom connectors expect OAuth, which isn't offered yet.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <section class="section-tight shell">
     <div class="cta">
       <div>
@@ -430,6 +425,62 @@ docker compose up -d
     <a href="/privacy.html">Privacy</a>
   </nav>
 </footer>
+
+<script>
+(function () {
+  var root = document.querySelector('[data-showcase]');
+  if (!root) return;
+  var tabs = Array.prototype.slice.call(root.querySelectorAll('[role="tab"]'));
+  var url = root.querySelector('[data-showcase-url]');
+  var caption = root.querySelector('[data-showcase-caption]');
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var current = 0, timer = null, ROTATE_MS = 6000;
+
+  function select(i, focus) {
+    current = (i + tabs.length) % tabs.length;
+    tabs.forEach(function (tab, j) {
+      var on = j === current;
+      var panel = document.getElementById(tab.getAttribute('aria-controls'));
+      tab.setAttribute('aria-selected', on ? 'true' : 'false');
+      tab.tabIndex = on ? 0 : -1;
+      panel.classList.toggle('is-active', on);
+      if (on && url) url.textContent = panel.getAttribute('data-url');
+      if (on && caption) caption.textContent = tab.querySelector('span').textContent;
+    });
+    if (focus) tabs[current].focus();
+  }
+
+  function stop() {
+    if (timer) clearInterval(timer);
+    timer = null;
+    root.classList.remove('is-rotating');
+  }
+
+  tabs.forEach(function (tab, i) {
+    tab.addEventListener('click', function () { stop(); select(i); });
+    tab.addEventListener('keydown', function (e) {
+      var d = { ArrowDown: 1, ArrowRight: 1, ArrowUp: -1, ArrowLeft: -1 }[e.key];
+      if (!d) return;
+      e.preventDefault();
+      stop();
+      select(current + d, true);
+    });
+  });
+
+  // Rotate through the views until someone picks one, but only while the
+  // section is on screen, so it starts from Today when they scroll to it.
+  if (!reduce && 'IntersectionObserver' in window) {
+    var started = false;
+    new IntersectionObserver(function (entries, obs) {
+      if (started || !entries[0].isIntersecting) return;
+      started = true;
+      obs.disconnect();
+      root.classList.add('is-rotating');
+      timer = setInterval(function () { select(current + 1); }, ROTATE_MS);
+    }, { threshold: 0.4 }).observe(root);
+  }
+})();
+</script>
 
 </body>
 </html>
