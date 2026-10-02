@@ -316,43 +316,156 @@ claude mcp add --transport http yarukoto \
   </section>
 
   <section id="install" class="band">
-    <div class="band-grid shell">
-      <div>
-        <h2>Up in three commands</h2>
-        <p class="body-copy" style="margin:16px 0 0">Requires Docker with Compose v2. The token is the owner's admin credential, so generate a real random one; everyone else signs in by QR. Your database lives in <code>./data</code> on the host and survives rebuilds.</p>
-        <p class="body-copy" style="margin:18px 0 0;font-size:15.5px">On a Synology NAS, use <code>docker-compose.synology.yml</code> in Container Manager — it pulls the prebuilt <code>ghcr.io/wyne/yarukoto</code> image for amd64 and arm64 instead of building on the NAS.</p>
+    <div class="shell install">
+      <div class="install-head">
+        <div>
+          <div class="eyebrow">Install</div>
+          <h2>Running in a minute</h2>
+        </div>
+        <p class="body-copy">One container, <code>ghcr.io/wyne/yarukoto</code>, built for amd64 and arm64. Your tasks live in a single SQLite file in the folder you mount, and survive every update.</p>
       </div>
-      <pre class="terminal"><span class="c">git clone https://github.com/wyne/yarukoto.git</span>
-<span class="c">cd yarukoto</span>
 
-<span class="c"># the owner's admin token — make it random</span>
-echo "YARUKOTO_TOKEN=$(openssl rand -hex 32)" &gt; .env
+      <div class="install-tabs" role="tablist" aria-label="Ways to install" data-tabs>
+        <button role="tab" id="itab-compose" aria-controls="ipanel-compose" aria-selected="true">Docker Compose <em>Recommended</em></button>
+        <button role="tab" id="itab-run" aria-controls="ipanel-run" aria-selected="false" tabindex="-1">docker run</button>
+        <button role="tab" id="itab-synology" aria-controls="ipanel-synology" aria-selected="false" tabindex="-1">Synology NAS</button>
+        <button role="tab" id="itab-source" aria-controls="ipanel-source" aria-selected="false" tabindex="-1">From source</button>
+      </div>
 
-docker compose up -d
-
-<span class="c"># then open http://localhost:8080</span>
-<span class="c">curl -fsS localhost:8080/api/v1/health</span></pre>
-    </div>
-    <div class="band-foot shell">
-      <p class="caption-above">That command reads this <code class="chip-light">docker-compose.yml</code>, checked into the repo root:</p>
-      <pre class="terminal terminal-dense">services:
+      <div class="install-panel" role="tabpanel" id="ipanel-compose" aria-labelledby="itab-compose">
+        <div class="install-steps">
+          <ol class="steps steps-plain">
+            <li>Make a folder and save this as <code>compose.yaml</code> in it. Set <code>YARUKOTO_TZ</code> to your time zone.</li>
+            <li>Generate the owner's token. It's the admin credential, so make it random.</li>
+            <li>Start it, then open <code>http://&lt;server&gt;:8080</code>.</li>
+          </ol>
+          <p class="install-note">Portainer, Dockge and Unraid's Compose Manager take the same file. To update: <code>docker compose pull &amp;&amp; docker compose up -d</code>.</p>
+        </div>
+        <div class="install-code">
+          <div class="codeblock">
+            <div class="codeblock-bar"><span>compose.yaml</span><button type="button" class="copy" data-copy>Copy</button></div>
+            <pre class="terminal terminal-dense">services:
   yarukoto:
-    build:
-      context: .
-      dockerfile: server/Dockerfile
+    image: ghcr.io/wyne/yarukoto:latest
     restart: unless-stopped
     ports:
       - "8080:8080"
     environment:
-      <span class="c"># openssl rand -hex 32</span>
-      YARUKOTO_TOKEN: ${YARUKOTO_TOKEN:?set a long random token in .env}
-      PORT: 8080
-      DATABASE_PATH: /data/yarukoto.db
-      TRASH_RETENTION_DAYS: 30
-      HISTORY_REVISIONS_PER_TASK: 50
+      YARUKOTO_TOKEN: ${YARUKOTO_TOKEN:?set a token in .env}
+      YARUKOTO_TZ: America/New_York   <span class="c"># your time zone</span>
     volumes:
       - ./data:/data</pre>
-      <p class="caption-below">Updating is <code class="chip-light">git pull &amp;&amp; docker compose up -d --build</code>. <code class="chip-light">./data</code> is untouched by rebuilds.</p>
+          </div>
+          <div class="codeblock">
+            <div class="codeblock-bar"><span>terminal</span><button type="button" class="copy" data-copy>Copy</button></div>
+            <pre class="terminal terminal-dense">echo "YARUKOTO_TOKEN=$(openssl rand -hex 32)" &gt; .env
+docker compose up -d</pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="install-panel" role="tabpanel" id="ipanel-run" aria-labelledby="itab-run" hidden>
+        <div class="install-steps">
+          <ol class="steps steps-plain">
+            <li>Generate the owner's token and keep it somewhere safe. It's how you sign in the first time.</li>
+            <li>Run the container with a folder for the database.</li>
+            <li>Open <code>http://&lt;server&gt;:8080</code>.</li>
+          </ol>
+          <p class="install-note">To update: <code>docker pull</code> the image, then remove and re-run the container with the same flags. The data folder is untouched.</p>
+        </div>
+        <div class="install-code">
+          <div class="codeblock">
+            <div class="codeblock-bar"><span>terminal</span><button type="button" class="copy" data-copy>Copy</button></div>
+            <pre class="terminal terminal-dense">export YARUKOTO_TOKEN=$(openssl rand -hex 32)
+echo "$YARUKOTO_TOKEN"   <span class="c"># save this</span>
+
+docker run -d --name yarukoto --restart unless-stopped \
+  -p 8080:8080 \
+  -v "$PWD/yarukoto-data:/data" \
+  -e YARUKOTO_TOKEN \
+  -e YARUKOTO_TZ=America/New_York \
+  ghcr.io/wyne/yarukoto:latest</pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="install-panel" role="tabpanel" id="ipanel-synology" aria-labelledby="itab-synology" hidden>
+        <div class="install-steps">
+          <ol class="steps steps-plain">
+            <li>In File Station, make a folder for the database, like <code>docker/yarukoto/data</code>.</li>
+            <li>In <b>Container Manager → Project → Create</b>, choose <i>Create docker-compose.yml</i> and paste this. <a href="https://github.com/wyne/yarukoto/blob/main/docker-compose.synology.yml">The repo’s copy</a> explains every line.</li>
+            <li>Paste a token from <code>openssl rand -hex 32</code>, fix the volume path if your data isn't on <code>volume1</code>, and start the project.</li>
+            <li>Open <code>http://&lt;nas-ip&gt;:8080</code>. If another package already has 8080, change only the left side of the port.</li>
+          </ol>
+          <p class="install-note">It pulls the prebuilt image, so the NAS never compiles anything. The NAS won't notice new versions on its own; to update, over SSH: <code>sudo docker compose pull &amp;&amp; sudo docker compose up -d</code>.</p>
+        </div>
+        <div class="install-code">
+          <div class="codeblock">
+            <div class="codeblock-bar"><span>Project compose file</span><button type="button" class="copy" data-copy>Copy</button></div>
+            <pre class="terminal terminal-dense">services:
+  yarukoto:
+    image: ghcr.io/wyne/yarukoto:latest
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    environment:
+      YARUKOTO_TOKEN: CHANGE_ME_RUN_openssl_rand_hex_32
+      YARUKOTO_TZ: America/New_York
+      PORT: 8080
+      DATABASE_PATH: /data/yarukoto.db
+    volumes:
+      - /volume1/docker/yarukoto/data:/data</pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="install-panel" role="tabpanel" id="ipanel-source" aria-labelledby="itab-source" hidden>
+        <div class="install-steps">
+          <ol class="steps steps-plain">
+            <li>Clone the repo. Its <code>docker-compose.yml</code> builds the server and web app from source.</li>
+            <li>Generate the owner's token and start it.</li>
+            <li>Open <code>http://localhost:8080</code>.</li>
+          </ol>
+          <p class="install-note">To update: <code>git pull &amp;&amp; docker compose up -d --build</code>. Building needs a few minutes and more memory than a NAS usually has, so use the prebuilt image there.</p>
+        </div>
+        <div class="install-code">
+          <div class="codeblock">
+            <div class="codeblock-bar"><span>terminal</span><button type="button" class="copy" data-copy>Copy</button></div>
+            <pre class="terminal terminal-dense">git clone https://github.com/wyne/yarukoto.git
+cd yarukoto
+echo "YARUKOTO_TOKEN=$(openssl rand -hex 32)" &gt; .env
+echo "YARUKOTO_TZ=America/New_York" &gt;&gt; .env
+docker compose up -d --build</pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="after-install">
+        <h3>Then</h3>
+        <div class="after-grid">
+          <div>
+            <span class="step">1</span>
+            <h4>Sign in as the owner</h4>
+            <p>Open the server in a browser or the app and use the token once. That account is the household's admin.</p>
+          </div>
+          <div>
+            <span class="step">2</span>
+            <h4>Bring in the household</h4>
+            <p>Settings → Household → New person shows a QR. Each phone scans it and is signed in. No more tokens.</p>
+          </div>
+          <div>
+            <span class="step">3</span>
+            <h4>Add HTTPS for outside</h4>
+            <p>Fine as plain HTTP at home. Before it faces the internet, put Caddy, Traefik or your NAS's reverse proxy in front.</p>
+          </div>
+          <div>
+            <span class="step">4</span>
+            <h4>Back up one file</h4>
+            <p>Everything is <code>yarukoto.db</code> in the data folder. Stop the container, copy it, start again. <a href="https://github.com/wyne/yarukoto#backups">More on backups</a>.</p>
+          </div>
+        </div>
+        <p class="install-note install-more">All settings, like trash retention and history depth, are in the <a href="https://github.com/wyne/yarukoto#configuration">configuration reference</a>.</p>
+      </div>
     </div>
   </section>
 
@@ -426,6 +539,46 @@ docker compose up -d
   </nav>
 </footer>
 
+<script>
+(function () {
+  // Install tabs: one panel shown at a time, arrow keys move between tabs.
+  document.querySelectorAll('[data-tabs]').forEach(function (list) {
+    var tabs = Array.prototype.slice.call(list.querySelectorAll('[role="tab"]'));
+    function select(i, focus) {
+      tabs.forEach(function (tab, j) {
+        var on = j === i;
+        tab.setAttribute('aria-selected', on ? 'true' : 'false');
+        tab.tabIndex = on ? 0 : -1;
+        document.getElementById(tab.getAttribute('aria-controls')).hidden = !on;
+      });
+      if (focus) tabs[i].focus();
+    }
+    tabs.forEach(function (tab, i) {
+      tab.addEventListener('click', function () { select(i); });
+      tab.addEventListener('keydown', function (e) {
+        var d = { ArrowRight: 1, ArrowLeft: -1 }[e.key];
+        if (!d) return;
+        e.preventDefault();
+        select((i + d + tabs.length) % tabs.length, true);
+      });
+    });
+  });
+
+  // Copy buttons copy the code block beside them, without the comments.
+  document.querySelectorAll('[data-copy]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var pre = btn.closest('.codeblock').querySelector('pre').cloneNode(true);
+      pre.querySelectorAll('.c').forEach(function (c) { c.remove(); });
+      var text = pre.textContent.replace(/[ \t]+$/gm, '');
+      if (!navigator.clipboard) return;
+      navigator.clipboard.writeText(text).then(function () {
+        btn.textContent = 'Copied';
+        setTimeout(function () { btn.textContent = 'Copy'; }, 1600);
+      });
+    });
+  });
+})();
+</script>
 <script>
 (function () {
   var root = document.querySelector('[data-showcase]');
