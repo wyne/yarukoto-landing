@@ -23,6 +23,7 @@
 
 /* Yarukoto landing — design tokens */
 :root {
+  --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
   --bg:        #F4F4F1;
   --band:      #E9E9E4;
   --card:      #FFFFFF;
@@ -929,6 +930,71 @@ kbd {
   .ha-shots .browser-small { width: 62%; }
 }
 
+/* ---------- motion ----------
+   Everything here is opacity and transform, runs once, and is skipped
+   entirely under reduced motion. Reveals only hide content once the
+   script has marked the page (.motion), so nothing is lost without it. */
 @media (prefers-reduced-motion: no-preference) {
   html { scroll-behavior: smooth; }
+
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: none; }
+  }
+  @keyframes rise-phone {
+    from { opacity: 0; transform: translateY(32px) rotate(2.5deg); }
+    to { opacity: 1; transform: none; }
+  }
+  @keyframes panel-in {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: none; }
+  }
+
+  /* The hero arrives in order: words, then the browser, then the phone. */
+  .hero-copy > * { animation: rise 0.8s var(--ease-out) both; }
+  .hero-copy > :nth-child(2) { animation-delay: 70ms; }
+  .hero-copy > :nth-child(3) { animation-delay: 140ms; }
+  .hero-copy > :nth-child(4) { animation-delay: 210ms; }
+  .hero-copy > :nth-child(5) { animation-delay: 260ms; }
+  .hero-copy > :nth-child(6) { animation-delay: 320ms; }
+  .hero-shots .browser { animation: rise 0.9s var(--ease-out) 0.2s both; }
+  .hero-shots .phone { animation: rise-phone 1.1s var(--ease-out) 0.42s both; }
+
+  /* Sections ease up as they scroll in; siblings follow each other. */
+  .motion [data-reveal] {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.75s var(--ease-out), transform 0.75s var(--ease-out);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+  .motion [data-reveal].is-in { opacity: 1; transform: none; }
+  .motion-init [data-reveal] { transition: none; }
+
+  /* Tabs: the chosen panel settles in rather than snapping. */
+  .install-tabs button { transition: background-color 0.2s, color 0.2s, box-shadow 0.2s; }
+  .install-panel:not([hidden]) { animation: panel-in 0.4s var(--ease-out) both; }
+  .showcase-panels { overflow: hidden; }
+  .showcase-panels img {
+    transform: scale(1.015);
+    transition: opacity 0.45s ease, transform 1.2s var(--ease-out);
+  }
+  .showcase-panels img.is-active { transform: none; }
+
+  .copy { transition: background-color 0.2s, color 0.2s; }
+  .site-nav a, .btn { transition: color 0.2s, background-color 0.2s, border-color 0.2s, transform 0.2s var(--ease-out); }
 }
+
+/* Hover lifts, only where there is a real pointer to hover with. */
+@media (prefers-reduced-motion: no-preference) and (hover: hover) and (pointer: fine) {
+  .platform, .after-grid > div {
+    transition: transform 0.35s var(--ease-out), box-shadow 0.35s var(--ease-out), border-color 0.35s;
+  }
+  .platform:hover, .after-grid > div:hover {
+    transform: translateY(-4px);
+    border-color: var(--line-hov);
+    box-shadow: 0 24px 48px -30px rgba(26, 26, 24, 0.35);
+  }
+  .btn:hover { transform: translateY(-1px); }
+}
+
+.copy.is-copied, .copy.is-copied:hover { background: #2F6B4F; color: #FFFFFF; }
