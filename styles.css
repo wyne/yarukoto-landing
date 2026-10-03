@@ -279,9 +279,8 @@ h2 {
   color: var(--faint);
 }
 .browser img { display: block; width: 100%; height: auto; }
-/* Phones are real device frames, shot straight on with transparent
-   edges, and angled here so the tilt stays sharp at any size. The shadow
-   sits on the wrapper: on the tilted image itself, Chrome blurs it. */
+/* Phones are real device frames with transparent edges, shown flat:
+   the frames are drawn straight on, so tilting them looks wrong. */
 .device {
   flex: none;
   filter: drop-shadow(0 28px 24px rgba(26, 26, 24, 0.2)) drop-shadow(0 6px 8px rgba(26, 26, 24, 0.1));
@@ -291,9 +290,6 @@ h2 {
   width: 240px;
   margin-left: -96px;
   margin-bottom: -46px;
-}
-.hero-shots .device img {
-  transform: perspective(1600px) rotateY(-18deg) rotateX(6deg) rotateZ(2deg);
 }
 
 /* ---------- sections ---------- */
@@ -709,9 +705,6 @@ kbd {
 
 .visual-phone { align-items: flex-start; padding-top: 34px; }
 .visual-phone .device { width: 210px; }
-.visual-phone .device img {
-  transform: perspective(1400px) rotateY(16deg) rotateX(8deg) rotateZ(-4deg);
-}
 
 /* mac window */
 .visual-mac { align-items: flex-start; justify-content: flex-start; }
@@ -881,7 +874,6 @@ kbd {
   .site-nav { gap: 18px; font-size: 13.5px; }
   .site-nav a:not(.repo-pill) { display: none; }
   .hero-facts { grid-template-columns: 1fr; gap: 16px; }
-  .hero-shots { padding-right: 16px; }
   .hero-shots .device { width: 156px; margin-left: -60px; }
   .cta { padding: 32px 26px; gap: 28px; }
   .terminal { padding: 20px 18px; font-size: 12.5px; }
@@ -974,11 +966,6 @@ kbd {
     box-shadow: 0 24px 48px -30px rgba(26, 26, 24, 0.35);
   }
   .btn:hover { transform: translateY(-1px); }
-  /* A hovered card's phone turns a little toward you. */
-  .visual-phone .device img { transition: transform 0.6s var(--ease-out); }
-  .platform:hover .visual-phone .device img {
-    transform: perspective(1400px) rotateY(9deg) rotateX(5deg) rotateZ(-2deg);
-  }
 }
 
 .copy.is-copied, .copy.is-copied:hover { background: #2F6B4F; color: #FFFFFF; }
