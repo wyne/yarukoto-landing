@@ -202,6 +202,12 @@ h2 {
   gap: 64px;
   align-items: start;
 }
+/* Let one-column grids shrink below their content on small phones. */
+.hero-grid > *,
+.split > *,
+.ha-grid > *,
+.install-head > *,
+.install-panel > * { min-width: 0; }
 .hero-copy { padding-top: 16px; }
 .hero-actions {
   display: flex;
@@ -273,22 +279,21 @@ h2 {
   color: var(--faint);
 }
 .browser img { display: block; width: 100%; height: auto; }
-.phone {
-  width: 216px;
-  margin-left: -84px;
-  margin-bottom: -32px;
-  border: 9px solid var(--ink);
-  border-radius: 34px;
-  overflow: hidden;
-  background: var(--ink);
-  box-shadow: 0 28px 50px -20px rgba(26, 26, 24, 0.42);
+/* Phones are real device frames, shot straight on with transparent
+   edges, and angled here so the tilt stays sharp at any size. The shadow
+   sits on the wrapper: on the tilted image itself, Chrome blurs it. */
+.device {
   flex: none;
+  filter: drop-shadow(0 28px 24px rgba(26, 26, 24, 0.2)) drop-shadow(0 6px 8px rgba(26, 26, 24, 0.1));
 }
-.phone img {
-  display: block;
-  width: 100%;
-  height: auto;
-  border-radius: 25px;
+.device img { display: block; width: 100%; height: auto; }
+.hero-shots .device {
+  width: 240px;
+  margin-left: -96px;
+  margin-bottom: -46px;
+}
+.hero-shots .device img {
+  transform: perspective(1600px) rotateY(-18deg) rotateX(6deg) rotateZ(2deg);
 }
 
 /* ---------- sections ---------- */
@@ -703,30 +708,9 @@ kbd {
 .platform .ticks { margin-top: 14px; font-size: 15px; gap: 10px; }
 
 .visual-phone { align-items: flex-start; padding-top: 34px; }
-.phone.phone-inline {
-  width: 190px;
-  margin: 0;
-  border-width: 8px;
-  border-radius: 30px;
-}
-.phone.phone-inline img { border-radius: 22px; }
-
-.phone.phone-android {
-  position: relative;
-  border-width: 7px;
-  border-radius: 26px;
-}
-.phone.phone-android img { border-radius: 19px; }
-.phone.phone-android::before {
-  content: "";
-  position: absolute;
-  top: 7px;
-  left: 50%;
-  width: 9px;
-  height: 9px;
-  margin-left: -4.5px;
-  border-radius: 50%;
-  background: var(--ink);
+.visual-phone .device { width: 210px; }
+.visual-phone .device img {
+  transform: perspective(1400px) rotateY(16deg) rotateX(8deg) rotateZ(-4deg);
 }
 
 /* mac window */
@@ -874,7 +858,7 @@ kbd {
   .lede { max-width: none; }
   h1 { font-size: 46px; }
   .hero-shots { padding-bottom: 40px; }
-  .phone { margin-bottom: -24px; }
+  .hero-shots .device { margin-bottom: -24px; }
   .split-shot-left .framed { order: 2; }
   .platforms { grid-template-columns: 1fr; max-width: 560px; }
   .after-grid { grid-template-columns: 1fr 1fr; }
@@ -897,13 +881,8 @@ kbd {
   .site-nav { gap: 18px; font-size: 13.5px; }
   .site-nav a:not(.repo-pill) { display: none; }
   .hero-facts { grid-template-columns: 1fr; gap: 16px; }
-  .phone {
-    width: 148px;
-    margin-left: -56px;
-    border-width: 7px;
-    border-radius: 26px;
-  }
-  .phone img { border-radius: 20px; }
+  .hero-shots { padding-right: 16px; }
+  .hero-shots .device { width: 156px; margin-left: -60px; }
   .cta { padding: 32px 26px; gap: 28px; }
   .terminal { padding: 20px 18px; font-size: 12.5px; }
   .site-footer { flex-direction: column; align-items: flex-start; gap: 14px; }
@@ -958,7 +937,7 @@ kbd {
   .hero-copy > :nth-child(5) { animation-delay: 260ms; }
   .hero-copy > :nth-child(6) { animation-delay: 320ms; }
   .hero-shots .browser { animation: rise 0.9s var(--ease-out) 0.2s both; }
-  .hero-shots .phone { animation: rise-phone 1.1s var(--ease-out) 0.42s both; }
+  .hero-shots .device { animation: rise-phone 1.1s var(--ease-out) 0.42s both; }
 
   /* Sections ease up as they scroll in; siblings follow each other. */
   .motion [data-reveal] {
@@ -995,6 +974,11 @@ kbd {
     box-shadow: 0 24px 48px -30px rgba(26, 26, 24, 0.35);
   }
   .btn:hover { transform: translateY(-1px); }
+  /* A hovered card's phone turns a little toward you. */
+  .visual-phone .device img { transition: transform 0.6s var(--ease-out); }
+  .platform:hover .visual-phone .device img {
+    transform: perspective(1400px) rotateY(9deg) rotateX(5deg) rotateZ(-2deg);
+  }
 }
 
 .copy.is-copied, .copy.is-copied:hover { background: #2F6B4F; color: #FFFFFF; }
