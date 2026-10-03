@@ -237,6 +237,7 @@
         <div class="syntax-sample">pay rent <span class="tok-date">fri 6pm</span> <span class="tok-meta">#home</span> <span class="tok-prio">!high</span> <span class="tok-meta">~admin</span></div>
         <p class="body-copy" style="margin:0">The due date and time, the <code>#tag</code>, the <code>!priority</code> and the <code>~list</code> come out of one line. Anything unrecognized stays as the title, and the chips show you what was understood before you commit.</p>
         <ul class="ticks">
+          <li>Repeats in the same line: <code>every mon, wed</code>, <code>every 2 weeks</code>, or <code>every! 3 days</code> to count from when it's done.</li>
           <li>Subtasks, Markdown notes, tags, priorities, due dates and times.</li>
           <li>Reminders, with Mark done and Snooze right on the notification.</li>
           <li>Undo for completing and trashing, and Trash you can restore from.</li>
@@ -387,7 +388,7 @@ docker run -d --name yarukoto --restart unless-stopped \
           <ol class="steps steps-plain">
             <li>In File Station, make a folder for the database, like <code>docker/yarukoto/data</code>.</li>
             <li>In <b>Container Manager → Project → Create</b>, choose <i>Create docker-compose.yml</i> and paste this. <a href="https://github.com/wyne/yarukoto/blob/main/docker-compose.synology.yml">The repo’s copy</a> explains every line.</li>
-            <li>Paste a token from <code>openssl rand -hex 32</code>, fix the volume path if your data isn't on <code>volume1</code>, and start the project.</li>
+            <li>Paste a token from <code>openssl rand -hex 32</code>, fix the volume path if your data isn't on <code>volume1</code>, and set <code>PUID</code>/<code>PGID</code> to your DSM user's ids (<code>id</code> over SSH prints them). Start the project.</li>
             <li>Open <code>http://&lt;nas-ip&gt;:8080</code>. If another package already has 8080, change only the left side of the port.</li>
           </ol>
           <p class="install-note">It pulls the prebuilt image, so the NAS never compiles anything. The NAS won't notice new versions on its own; to update, over SSH: <code>sudo docker compose pull &amp;&amp; sudo docker compose up -d</code>.</p>
@@ -406,6 +407,8 @@ docker run -d --name yarukoto --restart unless-stopped \
       YARUKOTO_TZ: America/New_York
       PORT: 8080
       DATABASE_PATH: /data/yarukoto.db
+      PUID: 1026   <span class="c"># your DSM user's id</span>
+      PGID: 100
     volumes:
       - /volume1/docker/yarukoto/data:/data</pre>
           </div>
@@ -415,11 +418,11 @@ docker run -d --name yarukoto --restart unless-stopped \
       <div class="install-panel" role="tabpanel" id="ipanel-source" aria-labelledby="itab-source" hidden>
         <div class="install-steps">
           <ol class="steps steps-plain">
-            <li>Clone the repo. Its <code>docker-compose.yml</code> builds the server and web app from source.</li>
+            <li>Clone the repo. Adding <code>docker-compose.build.yml</code> to its compose file builds the server and web app from your checkout instead of pulling the image.</li>
             <li>Generate the owner's token and start it.</li>
             <li>Open <code>http://localhost:8080</code>.</li>
           </ol>
-          <p class="install-note">To update: <code>git pull &amp;&amp; docker compose up -d --build</code>. Building needs a few minutes and more memory than a NAS usually has, so use the prebuilt image there.</p>
+          <p class="install-note">To update: <code>git pull</code>, then the same <code>up</code> command. Building needs a few minutes and more memory than a NAS usually has, so use the prebuilt image there.</p>
         </div>
         <div class="install-code">
           <div class="codeblock">
@@ -428,7 +431,7 @@ docker run -d --name yarukoto --restart unless-stopped \
 cd yarukoto
 echo "YARUKOTO_TOKEN=$(openssl rand -hex 32)" &gt; .env
 echo "YARUKOTO_TZ=America/New_York" &gt;&gt; .env
-docker compose up -d --build</pre>
+docker compose -f docker-compose.yml -f docker-compose.build.yml up -d --build</pre>
           </div>
         </div>
       </div>
@@ -453,8 +456,8 @@ docker compose up -d --build</pre>
           </div>
           <div>
             <span class="step">4</span>
-            <h4>Back up one file</h4>
-            <p>Everything is <code>yarukoto.db</code> in the data folder. Stop the container, copy it, start again. <a href="https://github.com/wyne/yarukoto#backups">More on backups</a>.</p>
+            <h4>Back up the snapshots</h4>
+            <p>The server writes a snapshot to <code>data/backups</code> every day and keeps the newest seven. Point Restic, Hyper Backup or whatever you use at that folder. <a href="https://github.com/wyne/yarukoto#backups">More on backups</a>.</p>
           </div>
         </div>
         <p class="install-note install-more">All settings, like trash retention and history depth, are in the <a href="https://github.com/wyne/yarukoto#configuration">configuration reference</a>.</p>

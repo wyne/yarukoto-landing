@@ -650,6 +650,7 @@ kbd {
   line-height: 1.55;
   color: var(--muted);
 }
+.ticks code { white-space: nowrap; }
 .ticks li {
   position: relative;
   padding-left: 26px;
