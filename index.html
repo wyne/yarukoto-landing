@@ -280,16 +280,15 @@
     <div class="split split-top ai-split">
       <div>
         <div class="eyebrow">AI assistants</div>
-        <h2>Ask Claude what's due</h2>
-        <p class="body-copy">The server speaks the Model Context Protocol at <code>/mcp</code>, so Claude Code or Claude Desktop can list, add, schedule and complete your tasks. It sees exactly what your account sees, and “friday” means friday in your time zone, not the container's.</p>
+        <h2>Ask your AI assistant what's due</h2>
+        <p class="body-copy">The server speaks the Model Context Protocol at <code>/mcp</code>, so any assistant or agent that supports MCP can list, add, schedule and complete your tasks. It sees exactly what your account sees, and “friday” means friday in your time zone, not the container's.</p>
       </div>
-      <pre class="terminal terminal-dense"><span class="c"># Claude Code</span>
-claude mcp add --transport http yarukoto \
-  https://todo.example.com/mcp \
-  --header "Authorization: Bearer $YARUKOTO_TOKEN"
+      <pre class="terminal terminal-dense"><span class="c"># add to any MCP client</span>
+URL   https://todo.example.com/mcp
+Auth  Bearer $YARUKOTO_TOKEN
 
 <span class="c"># then just ask</span>
-<span class="c">› what's due today on the house list?</span></pre>
+<span class="c">› what's due on the house list?</span></pre>
     </div>
   </section>
 
