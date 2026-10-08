@@ -696,6 +696,22 @@ kbd {
   position: relative;
 }
 .platform-body { padding: 26px 26px 30px; }
+.downloads {
+  margin-top: 24px;
+  padding: 26px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px 40px;
+}
+.downloads-copy { flex: 1 1 360px; min-width: 0; }
+.downloads h3 { margin: 0; font-size: 21px; letter-spacing: -0.01em; }
+.downloads p { margin: 8px 0 0; color: var(--muted); line-height: 1.55; text-wrap: pretty; }
+.downloads-actions { display: flex; flex-wrap: wrap; gap: 12px; }
 .platform h3 {
   margin: 0;
   font-size: 21px;
@@ -854,6 +870,7 @@ kbd {
   .hero-shots .device { margin-bottom: -24px; }
   .split-shot-left .framed { order: 2; }
   .platforms { grid-template-columns: 1fr; max-width: 560px; }
+  .downloads { max-width: 560px; }
   .after-grid { grid-template-columns: 1fr 1fr; }
   .showcase { grid-template-columns: 1fr; gap: 24px; }
   .showcase-tabs { display: grid; grid-template-columns: 1fr 1fr; }
