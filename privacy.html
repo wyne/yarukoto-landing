@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Privacy — Yarukoto</title>
-<meta name="description" content="Yarukoto's privacy policy. The apps send your tasks only to the server you run, and collect nothing about you." />
+<meta name="description" content="Yarukoto's privacy policy. The apps send your tasks only to the server you choose, and the developer receives none of it." />
 <link rel="canonical" href="https://yarukotoapp.com/privacy.html" />
 <link rel="icon" href="assets/favicon.png" />
 <link rel="apple-touch-icon" href="assets/app-icon-180.png" />
@@ -24,14 +24,27 @@
 
 <main class="shell legal">
   <h1>Privacy policy</h1>
-  <p class="legal-updated">Last updated October 7, 2026</p>
+  <p class="legal-updated">Last updated October 9, 2026</p>
 
-  <p>Yarukoto is a todo app that talks to a server you run yourself. The short version: the apps send your data to that server and nowhere else, and we, the people who make Yarukoto, never receive it.</p>
+  <p>Yarukoto is a todo app that talks to a server you run yourself. The short version: the apps send your data to that server and nowhere else, and the developer of Yarukoto never receives it.</p>
+  <p>Yarukoto is made by Justin Wyne, an individual developer. For anything about privacy or your data, email <a href="mailto:yarukoto@justinwyne.com">yarukoto@justinwyne.com</a>.</p>
 
-  <h2>What the apps collect</h2>
-  <p>Nothing about you reaches us. The iPhone, Android, Mac and web apps contain no analytics, advertising, crash reporting or tracking of any kind, and they don't share data with third parties.</p>
-  <p>The tasks, lists, tags, notes and household members you create are sent only to the Yarukoto server address you enter in the app. That server is run by you or by someone in your household, so whoever operates it is responsible for the data on it. A copy is also kept on your device so the app works offline.</p>
+  <h2>What the apps send, and where</h2>
+  <p>To work, the apps send this to the Yarukoto server address you enter, and only there:</p>
+  <ul>
+    <li><strong>Your content:</strong> tasks, notes, subtasks, tags, due dates, reminders, lists, folders and saved filters.</li>
+    <li><strong>Account details:</strong> the names of the people in your household, their account IDs, and a name and sign-in token for each signed-in device.</li>
+  </ul>
+  <p>That data is used only to sync your tasks and run your household. It isn't used for advertising, analytics or profiling, and it isn't sold or shared. The server is run by you or by someone in your household, so whoever operates it controls the data on it and is responsible for it. A copy is also kept on your device so the app works offline.</p>
+  <p>The developer receives none of this data. The iPhone, Android, Mac and web apps contain no analytics, advertising, crash reporting or tracking of any kind, and they don't send data to third parties.</p>
   <p>If you choose <em>Explore with sample data</em>, nothing is sent anywhere: the sample tasks live on your device and are discarded when the app reloads.</p>
+
+  <h2>How your data is protected</h2>
+  <ul>
+    <li><strong>In transit.</strong> The Android app connects to servers over HTTPS only. The iPhone and Mac apps also use HTTPS, and allow plain HTTP only to a server on your local network, such as one at home. The documentation recommends HTTPS for any server reachable from the internet.</li>
+    <li><strong>Sign-in.</strong> Each device gets its own token, approved from a device that is already signed in. The server stores only a hash of each device's token, and any device can be signed out from Settings.</li>
+    <li><strong>Who sees what.</strong> Private lists and your Inbox are visible only to you. Shared lists are visible to your household.</li>
+  </ul>
 
   <h2>Device permissions</h2>
   <ul>
@@ -47,7 +60,7 @@
   <p>yarukotoapp.com is a static page hosted on GitHub Pages. It sets no cookies, uses no analytics and loads no third-party fonts or scripts. GitHub may log visitors' IP addresses for security, as described in <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub's privacy statement</a>.</p>
 
   <h2>Changes and contact</h2>
-  <p>If this policy changes, the new version will be posted here with a new date. Questions are welcome as an issue on <a href="https://github.com/wyne/yarukoto/issues">GitHub</a>.</p>
+  <p>If this policy changes, the new version will be posted here with a new date. Questions go to <a href="mailto:yarukoto@justinwyne.com">yarukoto@justinwyne.com</a>, or as an issue on <a href="https://github.com/wyne/yarukoto/issues">GitHub</a>.</p>
 </main>
 
 <footer class="site-footer shell">
