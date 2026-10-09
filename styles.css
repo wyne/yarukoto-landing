@@ -711,7 +711,34 @@ kbd {
 .downloads-copy { flex: 1 1 360px; min-width: 0; }
 .downloads h3 { margin: 0; font-size: 21px; letter-spacing: -0.01em; }
 .downloads p { margin: 8px 0 0; color: var(--muted); line-height: 1.55; text-wrap: pretty; }
-.downloads-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.downloads-actions { display: flex; flex-wrap: wrap; gap: 16px; }
+.dl { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.dl-badge {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 196px;
+  padding: 11px 22px 11px 18px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: var(--card);
+  color: var(--ink);
+}
+.dl-badge:hover { text-decoration: none; color: var(--ink); border-color: var(--line-hov); }
+.dl-badge.is-primary { background: var(--ink); border-color: var(--ink); color: #FFFFFF; }
+.dl-badge.is-primary:hover { background: #000000; color: #FFFFFF; }
+.dl-logo { width: 26px; height: 26px; flex: none; }
+.dl-text { display: flex; flex-direction: column; line-height: 1.15; }
+.dl-small { font-size: 12px; opacity: 0.75; }
+.dl-os { font-size: 19px; font-weight: 700; letter-spacing: -0.01em; }
+.dl-meta { font-family: var(--mono); font-size: 11.5px; color: var(--muted); }
+.downloads .dl-note {
+  flex: 1 1 100%;
+  margin: 0;
+  padding-top: 16px;
+  border-top: 1px solid var(--line-soft);
+  font-size: 13.5px;
+}
 .platform h3 {
   margin: 0;
   font-size: 21px;
@@ -969,7 +996,7 @@ kbd {
   .showcase-panels img.is-active { transform: none; }
 
   .copy { transition: background-color 0.2s, color 0.2s; }
-  .site-nav a, .btn { transition: color 0.2s, background-color 0.2s, border-color 0.2s, transform 0.2s var(--ease-out); }
+  .site-nav a, .btn, .dl-badge { transition: color 0.2s, background-color 0.2s, border-color 0.2s, transform 0.2s var(--ease-out); }
 }
 
 /* Hover lifts, only where there is a real pointer to hover with. */
@@ -982,7 +1009,7 @@ kbd {
     border-color: var(--line-hov);
     box-shadow: 0 24px 48px -30px rgba(26, 26, 24, 0.35);
   }
-  .btn:hover { transform: translateY(-1px); }
+  .btn:hover, .dl-badge:hover { transform: translateY(-1px); }
 }
 
 .copy.is-copied, .copy.is-copied:hover { background: #2F6B4F; color: #FFFFFF; }
