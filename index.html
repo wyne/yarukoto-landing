@@ -126,7 +126,7 @@
           <h3>Mac</h3>
           <ul class="ticks">
             <li>A real Mac Catalyst app with resizable panes, hover, right-click and a menu bar of its own.</li>
-            <li>Drive it from the keyboard: arrows to move, <kbd>↩</kbd> to open, <kbd>⌘K</kbd> to go anywhere or do anything.</li>
+            <li>Built for the keyboard: <kbd>Tab</kbd> between panes, arrows to move, <kbd>⌘K</kbd> to go anywhere. <a href="#keyboard">See the keys</a></li>
             <li>System undo, so Edit ▸ Undo reads “Undo Complete Task”. Signed and notarized builds.</li>
           </ul>
         </div>
@@ -251,6 +251,56 @@
           <li>Reminders, with Mark done and Snooze right on the notification.</li>
           <li>Undo for completing and trashing, and Trash you can restore from.</li>
         </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== keyboard ===================== -->
+  <section id="keyboard" class="section shell">
+    <div class="split split-shot-right">
+      <div>
+        <div class="eyebrow">Keyboard</div>
+        <h2>Hands stay on the keys</h2>
+        <p class="body-copy">Every pane is a stop on <kbd>Tab</kbd>, the arrows move inside it, and <kbd>Esc</kbd> always lands you back on the list. Add a task, file it, open the next one and check off the last, without touching the trackpad.</p>
+        <ul class="ticks">
+          <li><b>Tab between panes:</b> sidebar, add field, list and task. <kbd>⇧Tab</kbd> goes back, and in a task it steps from title to notes to subtasks.</li>
+          <li><b>Move like Mail:</b> <kbd>↑</kbd> <kbd>↓</kbd> through tasks or views, <kbd>⌘↑</kbd> <kbd>⌘↓</kbd> to either end, <kbd>Space</kbd> to peek and <kbd>↩</kbd> to edit.</li>
+          <li><b>On the Mac, one key per place:</b> <kbd>⌘1</kbd>–<kbd>⌘7</kbd> for views, <kbd>⌘S</kbd> and <kbd>⌘D</kbd> for the sidebar and task pane, <kbd>⌘K</kbd> for everything else.</li>
+          <li><b><kbd>⌘/</kbd> lists every shortcut,</b> built from the same table as the menu bar, so it is never out of date. <a href="https://docs.yarukotoapp.com/using/keyboard/">All the keys</a></li>
+        </ul>
+      </div>
+      <div class="keymap" aria-hidden="true">
+        <div class="keymap-window">
+          <div class="keymap-bar"><i></i><i></i><i></i></div>
+          <div class="keymap-panes">
+            <div class="keymap-pane keymap-side">
+              <span class="km-row"></span>
+              <span class="km-row is-on"></span>
+              <span class="km-row"></span>
+              <span class="km-row km-short"></span>
+              <span class="km-row km-short"></span>
+              <span class="km-keys"><kbd>↑</kbd><kbd>↓</kbd></span>
+            </div>
+            <div class="keymap-pane keymap-list">
+              <span class="km-add">Add a task…</span>
+              <span class="km-task"><b></b><span></span></span>
+              <span class="km-task is-on"><b></b><span></span></span>
+              <span class="km-task"><b></b><span class="km-short"></span></span>
+              <span class="km-task"><b></b><span></span></span>
+              <span class="km-keys"><kbd>Space</kbd><kbd>↩</kbd><kbd>⌘↓</kbd></span>
+            </div>
+            <div class="keymap-pane keymap-task">
+              <span class="km-field km-title"></span>
+              <span class="km-field km-notes"></span>
+              <span class="km-sub"></span>
+              <span class="km-sub km-short"></span>
+              <span class="km-keys"><kbd>Tab</kbd><kbd>Esc</kbd></span>
+            </div>
+          </div>
+        </div>
+        <div class="keymap-flow">
+          <span>Sidebar</span><kbd>Tab</kbd><span>List</span><kbd>Tab</kbd><span>Task</span>
+        </div>
       </div>
     </div>
   </section>

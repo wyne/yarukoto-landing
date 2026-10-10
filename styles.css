@@ -945,6 +945,79 @@ kbd {
   .ha-shots .browser-small { width: 62%; }
 }
 
+/* ---------- keyboard ---------- */
+.keymap { display: flex; flex-direction: column; gap: 18px; min-width: 0; }
+.keymap-window {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--card);
+  overflow: hidden;
+  box-shadow: 0 24px 60px -32px rgba(26, 26, 24, 0.3);
+}
+.keymap-bar { display: flex; gap: 7px; padding: 12px 14px; border-bottom: 1px solid var(--line-soft); }
+.keymap-bar i { width: 11px; height: 11px; border-radius: 50%; background: var(--line); }
+.keymap-panes { display: grid; grid-template-columns: 0.7fr 1.3fr 1fr; min-height: 300px; }
+.keymap-pane {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px 14px 56px;
+  min-width: 0;
+}
+.keymap-pane + .keymap-pane { border-left: 1px solid var(--line-soft); }
+.keymap-side { background: var(--card-alt); }
+.km-row, .km-task span, .km-sub, .km-field {
+  display: block;
+  height: 8px;
+  border-radius: 4px;
+  background: var(--chip);
+}
+.km-row { margin: 3px 0; }
+.km-short { width: 60%; }
+.km-row.is-on { box-shadow: 0 0 0 6px var(--chip); background: var(--line-hov); }
+.km-add {
+  font-size: 12px;
+  color: var(--faint);
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  padding: 6px 9px;
+  margin-bottom: 4px;
+}
+.km-task { display: flex; align-items: center; gap: 9px; padding: 7px 8px; border-radius: 7px; }
+.km-task b { flex: none; width: 12px; height: 12px; border-radius: 50%; border: 1.5px solid var(--line-hov); }
+.km-task span { flex: 1; }
+.km-task.is-on { background: rgba(46, 82, 224, 0.09); box-shadow: inset 0 0 0 1px rgba(46, 82, 224, 0.35); }
+.km-task.is-on span { background: rgba(46, 82, 224, 0.28); }
+.km-title { height: 12px; width: 80%; background: var(--line-hov); }
+.km-notes { height: 34px; border-radius: 6px; background: var(--card-alt); border: 1px solid var(--line-soft); }
+.km-sub { margin-left: 18px; }
+.km-keys {
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+.km-keys kbd { background: var(--card); box-shadow: 0 1px 0 var(--line); }
+.keymap-flow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-size: 14px;
+  color: var(--muted);
+}
+.keymap-flow span { font-weight: 600; color: var(--ink); }
+.keymap-flow kbd { position: relative; }
+@media (max-width: 760px) {
+  .keymap-panes { grid-template-columns: 0.6fr 1.4fr; min-height: 260px; }
+  .keymap-task { display: none; }
+}
+
 /* ---------- motion ----------
    Everything here is opacity and transform, runs once, and is skipped
    entirely under reduced motion. Reveals only hide content once the
