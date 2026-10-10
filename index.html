@@ -81,7 +81,7 @@
   <section id="native" class="section shell">
     <div class="section-head">
       <div class="eyebrow">Design principle</div>
-      <h2>Native first, on every device you own</h2>
+      <h2>Apps for iPhone, Android, Mac and Windows</h2>
       <p class="section-intro">A todo app lives in the gaps of your day: a lock screen, a menu bar, a glance between meetings. So Yarukoto uses each platform's own controls instead of drawing look-alikes, and it ships as a real app on each one. The web app is there too, served by your server, but it isn't the thing wrapped up and called an app.</p>
     </div>
 
@@ -163,7 +163,7 @@
     <div class="split split-shot-right">
       <div>
         <div class="eyebrow">Multiple people</div>
-        <h2>One server for the whole household</h2>
+        <h2>Accounts and shared lists</h2>
         <p class="body-copy">Everyone gets their own account, their own Inbox, tags, folders and saved filters. Lists start private; share one and everyone at home can see and edit it. The groceries are shared, your work list stays yours.</p>
         <ul class="ticks">
           <li><b>Shared lists</b> carry a people icon in the sidebar, so it's always clear who sees what.</li>
@@ -186,7 +186,7 @@
   <section id="signin" class="section shell">
     <div class="section-head center">
       <div class="eyebrow">Sign-in</div>
-      <h2>No passwords. Point a camera.</h2>
+      <h2>Sign in with a QR code</h2>
       <p class="section-intro">Signing in is a QR code, in whichever direction has a camera. Every QR also shows a short code you can type, for the devices that don't.</p>
     </div>
     <div class="qr-flow">
@@ -206,7 +206,7 @@
     <div class="shell ha-grid">
       <div class="ha-copy">
         <div class="eyebrow">Home Assistant</div>
-        <h2>Your lists, in Home Assistant</h2>
+        <h2>Home Assistant integration</h2>
         <p class="body-copy">The Yarukoto integration turns the lists you pick into Home Assistant to-do lists. Tick off the groceries from a wall tablet, add to them by voice, or build an automation around what's due today.</p>
         <ul class="ticks">
           <li><b>Lists work both ways.</b> Add, edit, tick off and delete; it shows up in the app on the next sync.</li>
@@ -242,7 +242,7 @@
         <img src="assets/web-quick-add.webp" width="1440" height="600" alt="The add field with 'pay water bill sun 10am #bills !high ~house' typed in, and chips showing the parsed date, tag, list and priority" loading="lazy" />
       </div>
       <div>
-        <h2>Type the task. It parses the rest.</h2>
+        <h2>Add tasks in one line</h2>
         <div class="syntax-sample">pay rent <span class="tok-date">fri 6pm</span> <span class="tok-meta">#home</span> <span class="tok-prio">!high</span> <span class="tok-meta">~admin</span></div>
         <p class="body-copy" style="margin:0">The due date and time, the <code>#tag</code>, the <code>!priority</code> and the <code>~list</code> come out of one line. Anything unrecognized stays as the title, and the chips show you what was understood before you commit.</p>
         <ul class="ticks">
@@ -260,7 +260,7 @@
     <div class="split split-shot-right">
       <div>
         <div class="eyebrow">Keyboard</div>
-        <h2>Hands stay on the keys</h2>
+        <h2>Keyboard shortcuts</h2>
         <p class="body-copy">Every pane is a stop on <kbd>Tab</kbd>, the arrows move inside it, and <kbd>Esc</kbd> always lands you back on the list. Add a task, file it, open the next one and check off the last, without touching the trackpad.</p>
         <ul class="ticks">
           <li><b>Tab between panes:</b> sidebar, add field, list and task. <kbd>⇧Tab</kbd> goes back, and in a task it steps from title to notes to subtasks.</li>
@@ -308,7 +308,7 @@
   <section id="views" class="section shell">
     <div class="section-head">
       <div class="eyebrow">Views</div>
-      <h2>Today, this week, or just the chores</h2>
+      <h2>Views and saved filters</h2>
       <p class="section-intro">The same tasks, cut the way you think about them. Every view is a real link, so the one you live in is a bookmark away.</p>
     </div>
     <div class="showcase" data-showcase>
@@ -355,7 +355,7 @@
     <div class="split split-top ai-split">
       <div>
         <div class="eyebrow">AI assistants</div>
-        <h2>Ask your AI assistant what's due</h2>
+        <h2>Connect AI assistants with MCP</h2>
         <p class="body-copy">The server speaks the Model Context Protocol at <code>/mcp</code>, so any assistant or agent that supports MCP can list, add, schedule and complete your tasks. It sees exactly what your account sees, and “friday” means friday in your time zone, not the container's.</p>
       </div>
       <pre class="terminal terminal-dense"><span class="c"># add to any MCP client</span>
@@ -372,7 +372,7 @@ Auth  Bearer $YARUKOTO_TOKEN
       <div class="install-head">
         <div>
           <div class="eyebrow">Install</div>
-          <h2>Running in a minute</h2>
+          <h2>Install</h2>
         </div>
         <p class="body-copy">One container, <code>ghcr.io/wyne/yarukoto</code>, built for amd64 and arm64. Your tasks live in a single SQLite file in the folder you mount, and survive every update.</p>
       </div>
@@ -495,7 +495,7 @@ docker compose -f docker-compose.yml -f docker-compose.build.yml up -d --build</
       </div>
 
       <div class="after-install">
-        <h3>Then</h3>
+        <h3>After installing</h3>
         <div class="after-grid">
           <div>
             <span class="step">1</span>
@@ -524,7 +524,7 @@ docker compose -f docker-compose.yml -f docker-compose.build.yml up -d --build</
   </section>
 
   <section class="section-tight shell">
-    <h2>Against a hosted todo app</h2>
+    <h2>Compared with a hosted todo app</h2>
     <table class="compare">
       <thead>
         <tr>
@@ -571,7 +571,7 @@ docker compose -f docker-compose.yml -f docker-compose.build.yml up -d --build</
   <section class="section-tight shell">
     <div class="cta">
       <div>
-        <h2>Try it before you host it.</h2>
+        <h2>Try it with sample data</h2>
         <p>Sample data mode runs the whole app client-side — no server needed. Everything stays on the device and resets when you reload.</p>
       </div>
       <div class="cta-actions">
