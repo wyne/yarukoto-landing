@@ -604,6 +604,19 @@ h2 {
   border-bottom: 1px solid var(--line-soft);
 }
 
+/* ---------- native apps callout ---------- */
+.native-callout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 0.8fr);
+  gap: 64px;
+  align-items: end;
+  padding: 48px 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.native-callout .eyebrow { margin-bottom: 16px; }
+.native-callout .body-copy { margin: 0; }
+
 /* ---------- closing cta ---------- */
 .cta {
   background: var(--card);
@@ -886,7 +899,8 @@ kbd {
   .ai-split,
   .ha-grid,
   .install-head,
-  .install-panel {
+  .install-panel,
+  .native-callout {
     grid-template-columns: 1fr;
     gap: 48px;
   }
