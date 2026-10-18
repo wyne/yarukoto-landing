@@ -215,16 +215,6 @@ h2 {
   gap: 12px;
   margin-top: 32px;
 }
-.assurance {
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  margin-top: 20px;
-  font-family: var(--mono);
-  font-size: 13px;
-  color: var(--green);
-}
-.assurance svg { flex: none; }
 .hero-facts {
   margin-top: 36px;
   padding-top: 24px;
