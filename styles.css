@@ -682,6 +682,30 @@ kbd {
   align-items: center;
 }
 .plan-video { display: block; width: 100%; height: auto; background: var(--card); }
+.plan-shots {
+  display: flex;
+  align-items: flex-end;
+  min-width: 0;
+  padding-bottom: 8px;
+}
+.plan-shots .device {
+  width: 200px;
+  margin-left: -72px;
+  margin-bottom: -36px;
+}
+/* The clip plays inside the frame's screen; the frame image sits on top. */
+.device-video { position: relative; }
+.device-video video {
+  position: absolute;
+  left: 5.28%;
+  top: 2.51%;
+  width: 89.44%;
+  height: 94.97%;
+  border-radius: 7.8% / 3.6%;
+  object-fit: cover;
+  background: var(--card);
+}
+.device-video img { position: relative; pointer-events: none; }
 .plan-points { margin: 0; }
 @media (max-width: 1080px) {
   .plan-grid { grid-template-columns: 1fr; gap: 28px; }
@@ -936,6 +960,7 @@ kbd {
   .site-nav a:not(.repo-pill) { display: none; }
   .hero-facts { grid-template-columns: 1fr; gap: 16px; }
   .hero-shots .device { width: 156px; margin-left: -60px; }
+  .plan-shots .device { width: 132px; margin-left: -48px; margin-bottom: -24px; }
   .cta { padding: 32px 26px; gap: 28px; }
   .terminal { padding: 20px 18px; font-size: 12.5px; }
   .site-footer { flex-direction: column; align-items: flex-start; gap: 14px; }

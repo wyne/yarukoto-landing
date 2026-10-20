@@ -82,12 +82,18 @@
       <p class="section-intro">Everything without a date, and everything overdue, waits beside a calendar. Find a task, drag it onto a day, and it's scheduled. A finger on a phone works as well as a mouse.</p>
     </div>
     <div class="plan-grid">
-      <div class="browser">
-        <div class="browser-bar">
-          <i></i><i></i><i></i>
-          <span class="url">yarukoto.local:8080/calendar</span>
+      <div class="plan-shots">
+        <div class="browser">
+          <div class="browser-bar">
+            <i></i><i></i><i></i>
+            <span class="url">yarukoto.local:8080/calendar</span>
+          </div>
+          <video class="plan-video" data-plan-video src="assets/plan-drag-desktop.mp4" poster="assets/plan-drag-desktop-poster.webp" width="1140" height="900" autoplay muted loop playsinline preload="metadata" aria-label="Dragging tasks from the Plan pane onto days in the week and the month, including two at once, then moving a scheduled task to another day"></video>
         </div>
-        <video class="plan-video" data-plan-video src="assets/plan-drag-desktop.mp4" poster="assets/plan-drag-desktop-poster.webp" width="1140" height="900" autoplay muted loop playsinline preload="metadata" aria-label="Dragging tasks from the Plan pane onto days in the week and the month, including two at once, then moving a scheduled task to another day"></video>
+        <div class="device device-video">
+          <video data-plan-video src="assets/plan-drag-phone.mp4" poster="assets/plan-drag-phone-poster.webp" width="600" height="1304" autoplay muted loop playsinline preload="metadata" aria-label="On iPhone, opening Plan task and long-pressing a task onto a day in the month, then two selected tasks at once, then moving a task from today's agenda to another day"></video>
+          <img src="assets/iphone-frame.webp" width="720" height="1472" alt="" loading="lazy" />
+        </div>
       </div>
       <ul class="ticks plan-points">
         <li><b>Find it fast.</b> Search, or filter by list, tag and date. What still needs a day comes first, highest priority on top.</li>
@@ -645,12 +651,13 @@ docker compose -f docker-compose.yml -f docker-compose.build.yml up -d --build</
 
 <script>
 (function () {
-  // The Plan clip loops on its own; with reduced motion it waits for a click instead.
-  var video = document.querySelector('[data-plan-video]');
-  if (video && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    video.removeAttribute('autoplay');
-    video.pause();
-    video.controls = true;
+  // The Plan clips loop on their own; with reduced motion they wait for a click instead.
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll('[data-plan-video]').forEach(function (video) {
+      video.removeAttribute('autoplay');
+      video.pause();
+      video.controls = true;
+    });
   }
 })();
 </script>
