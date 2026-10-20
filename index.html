@@ -29,6 +29,7 @@
     <span>Yarukoto</span>
   </a>
   <nav class="site-nav">
+    <a href="#plan">Plan</a>
     <a href="#native">Native apps</a>
     <a href="#household">Household</a>
     <a href="#home-assistant">Home Assistant</a>
@@ -70,6 +71,31 @@
           <img src="assets/ios-today-native-framed.webp" width="720" height="1472" alt="Yarukoto's Today view on iPhone, with the household's tasks from House, Groceries and Family" />
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- ===================== plan ===================== -->
+  <section id="plan" class="section shell">
+    <div class="section-head">
+      <div class="eyebrow">Plan</div>
+      <h2>Plan the week by dragging</h2>
+      <p class="section-intro">Everything without a date, and everything overdue, waits beside a calendar. Find a task, drag it onto a day, and it's scheduled. A finger on a phone works as well as a mouse.</p>
+    </div>
+    <div class="plan-grid">
+      <div class="browser">
+        <div class="browser-bar">
+          <i></i><i></i><i></i>
+          <span class="url">yarukoto.local:8080/calendar</span>
+        </div>
+        <video class="plan-video" data-plan-video src="assets/plan-drag-desktop.mp4" poster="assets/plan-drag-desktop-poster.webp" width="1140" height="900" autoplay muted loop playsinline preload="metadata" aria-label="Dragging tasks from the Plan pane onto days in the week and the month, including two at once, then moving a scheduled task to another day"></video>
+      </div>
+      <ul class="ticks plan-points">
+        <li><b>Find it fast.</b> Search, or filter by list, tag and date. What still needs a day comes first, highest priority on top.</li>
+        <li><b>Drop it anywhere.</b> A column in the week for the days ahead, or a day in the month for later on.</li>
+        <li><b>Move several at once.</b> Tap a few tasks, then drag them together.</li>
+        <li><b>Rebalance as you go.</b> Anything already on the calendar drags to another day.</li>
+        <li><b>Made for your phone too.</b> Tap Plan task, long-press, and drop on any day.</li>
+      </ul>
     </div>
   </section>
 
@@ -339,7 +365,7 @@
         </div>
         <div class="showcase-panels">
           <img role="tabpanel" id="panel-today" aria-labelledby="tab-today" data-url="yarukoto.local:8080/today" class="is-active" src="assets/web-today.webp" width="1600" height="1000" alt="Today view: due and overdue tasks from shared and private lists" loading="lazy" />
-          <img role="tabpanel" id="panel-calendar" aria-labelledby="tab-calendar" data-url="yarukoto.local:8080/calendar" src="assets/web-calendar.webp" width="1600" height="1000" alt="Calendar view: a month grid above the day's agenda, with unscheduled tasks beside it ready to drag onto a day" loading="lazy" />
+          <img role="tabpanel" id="panel-calendar" aria-labelledby="tab-calendar" data-url="yarukoto.local:8080/calendar" src="assets/web-calendar.webp" width="1600" height="1000" alt="Plan view: a month grid above the day's agenda, with unscheduled tasks beside it ready to drag onto a day" loading="lazy" />
           <img role="tabpanel" id="panel-filters" aria-labelledby="tab-filters" data-url="yarukoto.local:8080/browse?savedFilterId=sf-1" src="assets/web-filters.webp" width="1600" height="1000" alt="Browse with the Chores this week saved filter selected, showing four chores across the House list" loading="lazy" />
           <img role="tabpanel" id="panel-detail" aria-labelledby="tab-detail" data-url="yarukoto.local:8080/today" src="assets/web-task-pane.webp" width="2000" height="1250" alt="Task pane beside the list with a due time, priority, Markdown notes and subtasks" loading="lazy" />
         </div>
@@ -617,6 +643,17 @@ docker compose -f docker-compose.yml -f docker-compose.build.yml up -d --build</
 })();
 </script>
 
+<script>
+(function () {
+  // The Plan clip loops on its own; with reduced motion it waits for a click instead.
+  var video = document.querySelector('[data-plan-video]');
+  if (video && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    video.removeAttribute('autoplay');
+    video.pause();
+    video.controls = true;
+  }
+})();
+</script>
 <script>
 (function () {
   // Install tabs: one panel shown at a time, arrow keys move between tabs.
