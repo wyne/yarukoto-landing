@@ -94,8 +94,21 @@
         <li><b>Drop it anywhere.</b> A column in the week for the days ahead, or a day in the month for later on.</li>
         <li><b>Move several at once.</b> Tap a few tasks, then drag them together.</li>
         <li><b>Rebalance as you go.</b> Anything already on the calendar drags to another day.</li>
-        <li><b>Made for your phone too.</b> Tap Plan task, long-press, and drop on any day.</li>
       </ul>
+    </div>
+    <div class="plan-phone">
+      <div class="phone-frame">
+        <video data-plan-video src="assets/plan-drag-phone.mp4" poster="assets/plan-drag-phone-poster.webp" width="600" height="1304" autoplay muted loop playsinline preload="metadata" aria-label="On iPhone, opening Plan task and long-pressing a task onto a day in the month, then two selected tasks at once, then moving a task from today's agenda to another day"></video>
+      </div>
+      <div>
+        <h3>Just as easy on your phone</h3>
+        <p class="body-copy">Tap <b>Plan task</b> and the tasks that need a day slide up from the bottom. Long-press one and the sheet steps aside, leaving the whole calendar to drop it on.</p>
+        <ul class="ticks">
+          <li><b>Carry several.</b> Tap a few, then long-press any of them and they travel together.</li>
+          <li><b>Change your mind.</b> Drag back to the button to cancel, and nothing moves.</li>
+          <li><b>Move what's planned.</b> Drag a task out of the agenda onto another day in the month.</li>
+        </ul>
+      </div>
     </div>
   </section>
 
@@ -645,12 +658,13 @@ docker compose -f docker-compose.yml -f docker-compose.build.yml up -d --build</
 
 <script>
 (function () {
-  // The Plan clip loops on its own; with reduced motion it waits for a click instead.
-  var video = document.querySelector('[data-plan-video]');
-  if (video && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    video.removeAttribute('autoplay');
-    video.pause();
-    video.controls = true;
+  // The Plan clips loop on their own; with reduced motion they wait for a click instead.
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll('[data-plan-video]').forEach(function (video) {
+      video.removeAttribute('autoplay');
+      video.pause();
+      video.controls = true;
+    });
   }
 })();
 </script>
