@@ -275,12 +275,12 @@
   <section id="quickadd" class="section shell">
     <div class="split split-shot-left">
       <div class="framed framed-shadow">
-        <img src="assets/web-quick-add.webp" width="1440" height="600" alt="The add field with 'pay water bill fri 10am #bills !high ~house' typed in, and chips showing the parsed date, tag, list and priority" loading="lazy" />
+        <img src="assets/web-quick-add.webp" width="1440" height="600" alt="The add field with 'pay water bill ~house fri 10am #bills !high' typed in: each token is tinted where it was typed, a suggestion offers !high to complete with Tab, and chips below show the parsed date and the House list" loading="lazy" />
       </div>
       <div>
         <h2>Add tasks in one line</h2>
         <div class="syntax-sample">pay rent <span class="tok-date">fri 6pm</span> <span class="tok-meta">#home</span> <span class="tok-prio">!high</span> <span class="tok-meta">~admin</span></div>
-        <p class="body-copy" style="margin:0">The due date and time, the <code>#tag</code>, the <code>!priority</code> and the <code>~list</code> come out of one line. Anything unrecognized stays as the title, and the chips show you what was understood before you commit.</p>
+        <p class="body-copy" style="margin:0">The due date and time, the <code>#tag</code>, the <code>!priority</code> and the <code>~list</code> come out of one line. Each one is tinted where you type it, so you can see what was understood before you commit, and anything unrecognized stays as the title. Tab completes the list, tag or priority being typed.</p>
         <ul class="ticks">
           <li>Repeats in the same line: <code>every mon, wed</code>, <code>every 2 weeks</code>, or <code>every! 3 days</code> to count from when it's done.</li>
           <li>Subtasks, Markdown notes, tags, priorities, due dates and times.</li>
