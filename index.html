@@ -31,6 +31,7 @@
   <nav class="site-nav">
     <a href="#native">Native apps</a>
     <a href="#plan">Plan</a>
+    <a href="#keyboard">Keyboard</a>
     <a href="#household">Household</a>
     <a href="#home-assistant">Home Assistant</a>
     <a href="#install">Install</a>
@@ -123,7 +124,8 @@
           <h3>Mac</h3>
           <ul class="ticks">
             <li>A real Mac Catalyst app with resizable panes, hover, right-click and a menu bar of its own.</li>
-            <li>Built for the keyboard: <kbd>Tab</kbd> between panes, arrows to move, <kbd>⌘K</kbd> to go anywhere. <a href="#keyboard">See the keys</a></li>
+            <li>Built for the keyboard: <kbd>Tab</kbd> between panes, arrows or <kbd>j</kbd> <kbd>k</kbd> to move, <kbd>⌘K</kbd> to go anywhere. <a href="#keyboard">See the keys</a></li>
+            <li>A dense layout made for a pointer, text you can size with <kbd>⌘=</kbd> and <kbd>⌘−</kbd>, and a window that narrows to a slim column beside your work.</li>
             <li>A menu bar icon with the count due today. Tick off Today's tasks from its menu, and closing the window keeps sync and reminders running. It can open at login, too.</li>
             <li>System undo, so Edit ▸ Undo reads “Undo Complete Task”. Signed and notarized builds.</li>
           </ul>
@@ -134,7 +136,7 @@
     <div id="download" class="downloads">
       <div class="downloads-copy">
         <h3>Download the desktop apps</h3>
-        <p>The same app as your phone, in a window of its own, with the wide layout and keyboard shortcuts. Connect it to your server, or explore with sample data first.</p>
+        <p>The same app as your phone, in a window of its own, with the wide layout, keyboard shortcuts and vim keys. Connect it to your server, or explore with sample data first.</p>
       </div>
       <div class="downloads-actions">
         <div class="dl" data-os="mac">
@@ -176,6 +178,7 @@
         <li><b>Drop it anywhere.</b> A column in the week for the days ahead, or a day in the month for later on.</li>
         <li><b>Move several at once.</b> Tap a few tasks, then drag them together.</li>
         <li><b>Rebalance as you go.</b> Anything already on the calendar drags to another day.</li>
+        <li><b>Room for the week.</b> The day columns get the width, the month opens when you need it, and the task pane folds away from its own edge.</li>
       </ul>
     </div>
     <div class="plan-phone">
@@ -203,6 +206,7 @@
         <p class="body-copy">Everyone gets their own account, their own Inbox, tags, folders and saved filters. Lists start private; share one and everyone at home can see and edit it. The groceries are shared, your work list stays yours.</p>
         <ul class="ticks">
           <li><b>Shared lists</b> carry a people icon in the sidebar, so it's always clear who sees what.</li>
+          <li><b>Activity shows what changed,</b> in which list, as it syncs, and opens or restores the task behind each entry.</li>
           <li><b>Each device signs in on its own</b> and can be signed out from Settings without touching the others.</li>
           <li><b>Removing someone hides, never deletes.</b> Their devices are signed out and their private lists set aside; restoring them brings it all back.</li>
         </ul>
@@ -296,13 +300,14 @@
     <div class="split split-shot-right">
       <div>
         <div class="eyebrow">Keyboard</div>
-        <h2>Keyboard shortcuts</h2>
+        <h2>Keyboard shortcuts, and vim keys</h2>
         <p class="body-copy">Every pane is a stop on <kbd>Tab</kbd>, the arrows move inside it, and <kbd>Esc</kbd> always lands you back on the list. Add a task, file it, open the next one and check off the last, without touching the trackpad.</p>
         <ul class="ticks">
           <li><b>Tab between panes:</b> sidebar, add field, list and task. <kbd>⇧Tab</kbd> goes back, and in a task it steps from title to notes to subtasks.</li>
-          <li><b>Move like Mail:</b> <kbd>↑</kbd> <kbd>↓</kbd> through tasks or views, <kbd>⌘↑</kbd> <kbd>⌘↓</kbd> to either end, <kbd>Space</kbd> to peek and <kbd>↩</kbd> to edit.</li>
+          <li><b>Arrows to move:</b> <kbd>↑</kbd> <kbd>↓</kbd> through tasks or views, <kbd>⌘↑</kbd> <kbd>⌘↓</kbd> to either end, <kbd>Space</kbd> to peek and <kbd>↩</kbd> to edit.</li>
+          <li><b>Or vim, built in:</b> <kbd>j</kbd> <kbd>k</kbd> and <kbd>gg</kbd> <kbd>G</kbd> through the list, <kbd>{</kbd> <kbd>}</kbd> between groups, <kbd>za</kbd> <kbd>zM</kbd> <kbd>zR</kbd> to fold them, <kbd>o</kbd> for a new task and <kbd>/</kbd> to find. Nothing to switch on: letters only reach the list while it holds the keyboard, so typing a j in a title types a j.</li>
           <li><b>On the Mac, one key per place:</b> <kbd>⌘1</kbd>–<kbd>⌘7</kbd> for views, <kbd>⌘S</kbd> and <kbd>⌘D</kbd> for the sidebar and task pane.</li>
-          <li><b><kbd>⌘K</kbd> for everything else:</b> go to any list, tag, view or filter, change grouping and sort, or file the selected tasks with <kbd>⇧⌘M</kbd> Move to List and <kbd>⇧⌘T</kbd> Edit Tags.</li>
+          <li><b><kbd>⌘K</kbd> for everything else:</b> go to any list, tag, view or filter, change grouping and sort, or file the selected tasks with <kbd>⇧⌘M</kbd> Move to List and <kbd>⇧⌘T</kbd> Edit Tags. <kbd>⌘O</kbd> finds a task by name, and both live in the same menu, so one key hands over to the other.</li>
           <li><b>Hold <kbd>⌘</kbd> to see the keys</b> labelled on the sidebar, the add field and search. <kbd>⌘/</kbd> lists every shortcut, built from the same table as the menu bar, so it is never out of date. <a href="https://docs.yarukotoapp.com/using/keyboard/">All the keys</a></li>
         </ul>
       </div>
@@ -324,7 +329,7 @@
               <span class="km-task is-on"><b></b><span></span></span>
               <span class="km-task"><b></b><span class="km-short"></span></span>
               <span class="km-task"><b></b><span></span></span>
-              <span class="km-keys"><kbd>Space</kbd><kbd>↩</kbd><kbd>⌘↓</kbd></span>
+              <span class="km-keys"><kbd>j</kbd><kbd>k</kbd><kbd>Space</kbd><kbd>↩</kbd></span>
             </div>
             <div class="keymap-pane keymap-task">
               <span class="km-field km-title"></span>
@@ -338,6 +343,16 @@
         <div class="keymap-flow">
           <span>Sidebar</span><kbd>Tab</kbd><span>List</span><kbd>Tab</kbd><span>Task</span>
         </div>
+        <dl class="vimkeys">
+          <div><dt><kbd>j</kbd><kbd>k</kbd></dt><dd>Next, previous task</dd></div>
+          <div><dt><kbd>gg</kbd><kbd>G</kbd></dt><dd>First, last task</dd></div>
+          <div><dt><kbd>{</kbd><kbd>}</kbd></dt><dd>Previous, next group</dd></div>
+          <div><dt><kbd>⌃E</kbd><kbd>⌃Y</kbd></dt><dd>Scroll a row</dd></div>
+          <div><dt><kbd>za</kbd><kbd>zM</kbd><kbd>zR</kbd></dt><dd>Fold one, fold all, open all</dd></div>
+          <div><dt><kbd>i</kbd><kbd>o</kbd></dt><dd>New task</dd></div>
+          <div><dt><kbd>/</kbd></dt><dd>Find</dd></div>
+          <div><dt><kbd>\</kbd></dt><dd>Sidebar</dd></div>
+        </dl>
       </div>
     </div>
   </section>
@@ -351,8 +366,8 @@
     <div class="showcase" data-showcase>
       <div class="showcase-tabs" role="tablist" aria-label="Views">
         <button class="showcase-tab" role="tab" id="tab-today" aria-controls="panel-today" aria-selected="true">
-          <b>Today</b>
-          <span>What's due now, with the overdue on top and the finished folded away.</span>
+          <b>Agenda</b>
+          <span>What's due today, or the next few days a section each, with the overdue on top and the finished folded away.</span>
           <i class="showcase-progress" aria-hidden="true"></i>
         </button>
         <button class="showcase-tab" role="tab" id="tab-calendar" aria-controls="panel-calendar" aria-selected="false" tabindex="-1">
@@ -383,7 +398,7 @@
           <img role="tabpanel" id="panel-detail" aria-labelledby="tab-detail" data-url="yarukoto.local:8080/today" src="assets/web-task-pane.webp" width="2000" height="1250" alt="Task pane beside the list with a due time, priority, Markdown notes and subtasks" loading="lazy" />
         </div>
       </div>
-      <p class="showcase-caption" data-showcase-caption aria-hidden="true">What's due now, with the overdue on top and the finished folded away.</p>
+      <p class="showcase-caption" data-showcase-caption aria-hidden="true">What's due today, or the next few days a section each, with the overdue on top and the finished folded away.</p>
     </div>
   </section>
 
