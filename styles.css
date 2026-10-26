@@ -1069,6 +1069,129 @@ kbd {
   .keymap-task { display: none; }
 }
 
+/* ---------- vim ---------- */
+.band-vim { margin-top: 120px; }
+.vim { padding-top: 88px; padding-bottom: 96px; }
+.vim-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 56px;
+  align-items: start;
+}
+.vim-demo { margin: 0; min-width: 0; }
+.vim-window {
+  background: var(--ink);
+  color: #E8E8E2;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 30px 70px -36px rgba(26, 26, 24, 0.55);
+  font-size: 14.5px;
+}
+.vim-bar {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 12px 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.vim-bar i { width: 11px; height: 11px; border-radius: 50%; background: rgba(255, 255, 255, 0.16); }
+.vim-bar span { margin-left: 10px; font-weight: 600; color: #FFFFFF; }
+.vim-add {
+  display: flex;
+  align-items: center;
+  margin: 14px 16px 6px;
+  padding: 8px 11px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  color: rgba(255, 255, 255, 0.4);
+  min-height: 20px;
+}
+.vim-add .is-draft { color: #FFFFFF; }
+.vim-add.is-on { border-color: #7D95F5; box-shadow: 0 0 0 3px rgba(125, 149, 245, 0.25); }
+.vim-caret { display: none; width: 1.5px; height: 16px; margin-left: 1px; background: #FFFFFF; }
+.vim-add.is-on .vim-caret { display: block; }
+.vim-add.is-on span:not(.is-draft) { display: none; }
+.vim-list { padding: 4px 10px 12px; min-height: 400px; }
+.vim-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 8px 6px;
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+  border-radius: 7px;
+}
+.vim-chev {
+  width: 6px;
+  height: 6px;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(45deg) translate(-2px, -2px);
+}
+.vim-group.is-folded .vim-chev { transform: rotate(-45deg); }
+.vim-count {
+  margin-left: auto;
+  font-family: var(--mono);
+  font-weight: 400;
+  letter-spacing: 0;
+}
+.vim-task { display: flex; align-items: center; gap: 10px; padding: 7px 8px; border-radius: 7px; }
+.vim-task b { flex: none; width: 13px; height: 13px; border-radius: 50%; border: 1.5px solid rgba(255, 255, 255, 0.3); }
+.vim-task.is-on, .vim-group.is-on {
+  background: rgba(125, 149, 245, 0.18);
+  box-shadow: inset 0 0 0 1px rgba(125, 149, 245, 0.55);
+}
+.vim-group.is-on { color: #FFFFFF; padding-bottom: 8px; padding-top: 8px; margin-top: 4px; }
+.vim-status {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  font-family: var(--mono);
+  font-size: 13px;
+  background: rgba(255, 255, 255, 0.03);
+}
+.vim-keys {
+  min-width: 2.6em;
+  padding: 2px 8px;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #FFFFFF;
+  text-align: center;
+}
+.vim-what { color: rgba(255, 255, 255, 0.55); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+@media (prefers-reduced-motion: no-preference) {
+  .vim-task, .vim-group { transition: background-color 0.15s, box-shadow 0.15s; }
+  .vim-keys.is-pressed { animation: vim-press 0.35s var(--ease-out); }
+  @keyframes vim-press { from { transform: scale(1.18); background: rgba(125, 149, 245, 0.5); } to { transform: none; } }
+}
+.vim-cards { display: grid; gap: 14px; }
+.vim-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 16px 18px;
+}
+.vim-card h3 { margin: 0 0 10px; font-size: 14px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--faint); }
+.vim-card dl { margin: 0; display: grid; gap: 8px; }
+.vim-card dl div { display: flex; align-items: baseline; gap: 12px; }
+.vim-card dt { flex: none; width: 112px; }
+.vim-card dd { margin: 0; font-size: 15px; color: var(--muted); }
+.vim-copy .ticks { margin-top: 28px; }
+@media (max-width: 960px) {
+  .vim-grid { grid-template-columns: minmax(0, 1fr); gap: 40px; }
+}
+@media (max-width: 760px) {
+  .band-vim { margin-top: 80px; }
+  .vim { padding-top: 64px; padding-bottom: 72px; }
+  .vim-list { min-height: 380px; }
+  .vim-card dt { width: 92px; }
+}
+
 /* ---------- motion ----------
    Everything here is opacity and transform, runs once, and is skipped
    entirely under reduced motion. Reveals only hide content once the
