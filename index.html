@@ -31,7 +31,7 @@
   <nav class="site-nav">
     <a href="#native">Native apps</a>
     <a href="#plan">Plan</a>
-    <a href="#keyboard">Keyboard</a>
+    <a href="#vim">Vim keys</a>
     <a href="#household">Household</a>
     <a href="#home-assistant">Home Assistant</a>
     <a href="#install">Install</a>
@@ -305,7 +305,7 @@
         <ul class="ticks">
           <li><b>Tab between panes:</b> sidebar, add field, list and task. <kbd>⇧Tab</kbd> goes back, and in a task it steps from title to notes to subtasks.</li>
           <li><b>Arrows to move:</b> <kbd>↑</kbd> <kbd>↓</kbd> through tasks or views, <kbd>⌘↑</kbd> <kbd>⌘↓</kbd> to either end, <kbd>Space</kbd> to peek and <kbd>↩</kbd> to edit.</li>
-          <li><b>Or vim, built in:</b> <kbd>j</kbd> <kbd>k</kbd> and <kbd>gg</kbd> <kbd>G</kbd> through the list, <kbd>{</kbd> <kbd>}</kbd> between groups, <kbd>za</kbd> <kbd>zM</kbd> <kbd>zR</kbd> to fold them, <kbd>o</kbd> for a new task and <kbd>/</kbd> to find. Nothing to switch on: letters only reach the list while it holds the keyboard, so typing a j in a title types a j.</li>
+          <li><b>Or vim, built in:</b> <kbd>j</kbd> <kbd>k</kbd>, <kbd>gg</kbd> <kbd>G</kbd>, <kbd>{</kbd> <kbd>}</kbd> and the <kbd>z</kbd> folds work in every task list. <a href="#vim">See the vim keys</a></li>
           <li><b>On the Mac, one key per place:</b> <kbd>⌘1</kbd>–<kbd>⌘7</kbd> for views, <kbd>⌘S</kbd> and <kbd>⌘D</kbd> for the sidebar and task pane.</li>
           <li><b><kbd>⌘K</kbd> for everything else:</b> go to any list, tag, view or filter, change grouping and sort, or file the selected tasks with <kbd>⇧⌘M</kbd> Move to List and <kbd>⇧⌘T</kbd> Edit Tags. <kbd>⌘O</kbd> finds a task by name, and both live in the same menu, so one key hands over to the other.</li>
           <li><b>Hold <kbd>⌘</kbd> to see the keys</b> labelled on the sidebar, the add field and search. <kbd>⌘/</kbd> lists every shortcut, built from the same table as the menu bar, so it is never out of date. <a href="https://docs.yarukotoapp.com/using/keyboard/">All the keys</a></li>
@@ -343,16 +343,67 @@
         <div class="keymap-flow">
           <span>Sidebar</span><kbd>Tab</kbd><span>List</span><kbd>Tab</kbd><span>Task</span>
         </div>
-        <dl class="vimkeys">
-          <div><dt><kbd>j</kbd><kbd>k</kbd></dt><dd>Next, previous task</dd></div>
-          <div><dt><kbd>gg</kbd><kbd>G</kbd></dt><dd>First, last task</dd></div>
-          <div><dt><kbd>{</kbd><kbd>}</kbd></dt><dd>Previous, next group</dd></div>
-          <div><dt><kbd>⌃E</kbd><kbd>⌃Y</kbd></dt><dd>Scroll a row</dd></div>
-          <div><dt><kbd>za</kbd><kbd>zM</kbd><kbd>zR</kbd></dt><dd>Fold one, fold all, open all</dd></div>
-          <div><dt><kbd>i</kbd><kbd>o</kbd></dt><dd>New task</dd></div>
-          <div><dt><kbd>/</kbd></dt><dd>Find</dd></div>
-          <div><dt><kbd>\</kbd></dt><dd>Sidebar</dd></div>
-        </dl>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===================== vim ===================== -->
+  <section id="vim" class="band band-vim">
+    <div class="shell vim">
+      <div class="section-head">
+        <div class="eyebrow">Vim keys</div>
+        <h2>Vim keys in every task list</h2>
+        <p class="section-intro">If your fingers already reach for <kbd>j</kbd> and <kbd>k</kbd>, the task list follows them. Move, jump between groups, fold them away and start a new task without reaching for the arrows. They're built into the list rather than added on top, so they're always on, in the Mac app, the Windows app and the browser alike.</p>
+      </div>
+
+      <div class="vim-grid">
+        <figure class="vim-demo" data-vim-demo aria-label="A task list driven from the keyboard: j and k move the cursor, } jumps to the next group, za folds it, zM and zR fold and open every group, and o starts a new task">
+          <div class="vim-window" aria-hidden="true">
+            <div class="vim-bar"><i></i><i></i><i></i><span>Agenda</span></div>
+            <div class="vim-add" data-vim-add><span data-vim-add-text>Add a task…</span><b class="vim-caret"></b></div>
+            <div class="vim-list" data-vim-list></div>
+            <div class="vim-status">
+              <span class="vim-keys" data-vim-keys>&nbsp;</span>
+              <span class="vim-what" data-vim-what>&nbsp;</span>
+            </div>
+          </div>
+        </figure>
+
+        <div class="vim-copy">
+          <div class="vim-cards">
+            <div class="vim-card">
+              <h3>Move</h3>
+              <dl>
+                <div><dt><kbd>j</kbd> <kbd>k</kbd></dt><dd>Next and previous task</dd></div>
+                <div><dt><kbd>gg</kbd> <kbd>G</kbd></dt><dd>First and last task</dd></div>
+                <div><dt><kbd>⌃E</kbd> <kbd>⌃Y</kbd></dt><dd>Scroll a row, the cursor stays put</dd></div>
+              </dl>
+            </div>
+            <div class="vim-card">
+              <h3>Groups</h3>
+              <dl>
+                <div><dt><kbd>}</kbd> <kbd>{</kbd></dt><dd>Next group, or back to this one's start</dd></div>
+                <div><dt><kbd>za</kbd> <kbd>zo</kbd> <kbd>zc</kbd></dt><dd>Toggle, open or fold this group</dd></div>
+                <div><dt><kbd>zM</kbd> <kbd>zR</kbd></dt><dd>Fold or open every group</dd></div>
+              </dl>
+            </div>
+            <div class="vim-card">
+              <h3>Act</h3>
+              <dl>
+                <div><dt><kbd>o</kbd> <kbd>i</kbd></dt><dd>Start a new task</dd></div>
+                <div><dt><kbd>/</kbd></dt><dd>Search</dd></div>
+                <div><dt><kbd>\</kbd></dt><dd>Show or hide the sidebar</dd></div>
+              </dl>
+            </div>
+          </div>
+          <ul class="ticks">
+            <li><b>Never in the way of typing.</b> Letters only reach the list while it holds the keyboard, so a j in a task's title is just a j.</li>
+            <li><b>Folds you can land on.</b> A folded group's header is a stop of its own, so <kbd>j</kbd> and <kbd>k</kbd> reach it and <kbd>za</kbd> opens it again.</li>
+            <li><b>Works with everything else.</b> <kbd>Space</kbd> peeks at the task under the cursor, <kbd>↩</kbd> edits it and <kbd>⌘↩</kbd> checks it off, along with any others you've selected with <kbd>⇧↓</kbd>.</li>
+            <li><b>The same in a browser,</b> where <kbd>o</kbd>, <kbd>/</kbd> and <kbd>\</kbd> stand in for the New Task, Find and sidebar keys the browser keeps for itself. <a href="https://docs.yarukotoapp.com/using/keyboard/#the-task-list">All the list keys</a></li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
@@ -730,7 +781,7 @@ docker compose -f docker-compose.yml -f docker-compose.build.yml up -d --build</
   // each other by a beat. Skipped under reduced motion or without
   // IntersectionObserver, where everything is simply shown.
   if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  var groups = ['.platforms', '#household .split', '.qr-flow', '.ha-grid', '#quickadd .split', '#ai .split', '.after-grid'];
+  var groups = ['.platforms', '#household .split', '.qr-flow', '.ha-grid', '#quickadd .split', '#ai .split', '.after-grid', '.vim-grid'];
   var singles = ['.section-head', '.showcase', '.install-head', '.install-tabs', '.install-panel:not([hidden])', '.after-install > h3', '.compare', '.cta'];
   var items = [];
   groups.forEach(function (sel) {
@@ -827,5 +878,169 @@ docker compose -f docker-compose.yml -f docker-compose.build.yml up -d --build</
 })();
 </script>
 
+<script>
+(function () {
+  // The vim demo: a scripted run of keys over a small list, using the same
+  // rules as the app. A folded group is a stop of its own; open ones stop on
+  // their tasks. It runs only while on screen, and holds one frame under
+  // reduced motion.
+  var root = document.querySelector('[data-vim-demo]');
+  if (!root) return;
+  var listEl = root.querySelector('[data-vim-list]');
+  var keysEl = root.querySelector('[data-vim-keys]');
+  var whatEl = root.querySelector('[data-vim-what]');
+  var addEl = root.querySelector('[data-vim-add]');
+  var addText = root.querySelector('[data-vim-add-text]');
+
+  function fresh() {
+    return {
+      groups: [
+        { name: 'Today', folded: false, tasks: ['Pay the water bill', 'Call the plumber', 'Book the dentist'] },
+        { name: 'Tomorrow', folded: false, tasks: ['Pick up dry cleaning', 'Renew passport'] },
+        { name: 'Saturday', folded: false, tasks: ['Clean the gutters', 'Plan the weekend trip'] }
+      ],
+      at: { g: 0, t: 0 },
+      draft: null
+    };
+  }
+  var st = fresh();
+
+  // Cursor stops in order: a folded group's header (t: -1), or each open group's tasks.
+  function stops() {
+    var out = [];
+    st.groups.forEach(function (g, gi) {
+      if (g.folded) out.push({ g: gi, t: -1 });
+      else g.tasks.forEach(function (_, ti) { out.push({ g: gi, t: ti }); });
+    });
+    return out;
+  }
+  function index() {
+    var s = stops();
+    for (var i = 0; i < s.length; i++) if (s[i].g === st.at.g && s[i].t === st.at.t) return i;
+    return 0;
+  }
+  function go(i) {
+    var s = stops();
+    st.at = s[Math.max(0, Math.min(s.length - 1, i))];
+  }
+  function firstOf(gi) {
+    return st.groups[gi].folded ? { g: gi, t: -1 } : { g: gi, t: 0 };
+  }
+  var act = {
+    j: function () { go(index() + 1); },
+    k: function () { go(index() - 1); },
+    gg: function () { go(0); },
+    G: function () { go(stops().length - 1); },
+    '}': function () { if (st.at.g < st.groups.length - 1) st.at = firstOf(st.at.g + 1); },
+    '{': function () {
+      if (st.at.t > 0) st.at = firstOf(st.at.g);
+      else if (st.at.g > 0) st.at = firstOf(st.at.g - 1);
+    },
+    za: function () {
+      var g = st.groups[st.at.g];
+      g.folded = !g.folded;
+      st.at = firstOf(st.at.g);
+    },
+    zM: function () {
+      st.groups.forEach(function (g) { g.folded = true; });
+      st.at = { g: st.at.g, t: -1 };
+    },
+    zR: function () {
+      st.groups.forEach(function (g) { g.folded = false; });
+      if (st.at.t < 0) st.at = { g: st.at.g, t: 0 };
+    }
+  };
+
+  var NEW = 'Return library books';
+  var script = [
+    ['j', 'Next task'],
+    ['j', 'Next task'],
+    ['}', 'Next group'],
+    ['za', 'Fold the group'],
+    ['j', 'Next task'],
+    ['k', 'Back onto the folded group'],
+    ['za', 'Open it again'],
+    ['zM', 'Fold every group'],
+    ['j', 'Next group'],
+    ['zR', 'Open every group'],
+    ['G', 'Last task'],
+    ['{', 'Start of this group'],
+    ['gg', 'First task'],
+    ['o', 'New task'],
+    ['type', ''],
+    ['↩', 'Added'],
+    ['Esc', 'Back to the list']
+  ];
+
+  function render() {
+    var html = '';
+    st.groups.forEach(function (g, gi) {
+      var onHead = st.at.g === gi && st.at.t === -1 && st.draft === null;
+      html += '<div class="vim-group' + (g.folded ? ' is-folded' : '') + (onHead ? ' is-on' : '') + '">' +
+        '<span class="vim-chev"></span>' + g.name +
+        (g.folded ? '<span class="vim-count">' + g.tasks.length + '</span>' : '') + '</div>';
+      if (g.folded) return;
+      g.tasks.forEach(function (t, ti) {
+        var on = st.at.g === gi && st.at.t === ti && st.draft === null;
+        html += '<div class="vim-task' + (on ? ' is-on' : '') + '"><b></b><span>' + t + '</span></div>';
+      });
+    });
+    listEl.innerHTML = html;
+    var typing = st.draft !== null;
+    addEl.classList.toggle('is-on', typing);
+    addText.textContent = typing ? st.draft : 'Add a task…';
+    addText.classList.toggle('is-draft', typing && st.draft.length > 0);
+  }
+  function say(keys, what) {
+    keysEl.textContent = keys || ' ';
+    whatEl.textContent = what || ' ';
+    keysEl.classList.remove('is-pressed');
+    void keysEl.offsetWidth;
+    if (keys) keysEl.classList.add('is-pressed');
+  }
+
+  render();
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    act.j(); act.j(); act['}'](); act.za();
+    render();
+    say('za', 'Fold the group');
+    return;
+  }
+
+  var step = 0, timer = null, visible = false;
+  function tick() {
+    timer = null;
+    if (!visible) return;
+    if (step >= script.length) {
+      st = fresh(); step = 0;
+      render(); say('', '');
+      timer = setTimeout(tick, 1400);
+      return;
+    }
+    var s = script[step++];
+    var delay = 1250;
+    if (s[0] === 'o') { st.draft = ''; }
+    else if (s[0] === 'type') {
+      var n = (st.draft || '').length;
+      if (n < NEW.length) { st.draft = NEW.slice(0, n + 1); step--; delay = 55; }
+      else delay = 500;
+      render();
+      timer = setTimeout(tick, delay);
+      return;
+    }
+    else if (s[0] === '↩') { st.groups[0].tasks.unshift(st.draft); st.draft = ''; }
+    else if (s[0] === 'Esc') { st.draft = null; st.at = { g: 0, t: 0 }; }
+    else act[s[0]]();
+    render();
+    say(s[0], s[1]);
+    timer = setTimeout(tick, delay);
+  }
+  if (!('IntersectionObserver' in window)) { visible = true; tick(); return; }
+  new IntersectionObserver(function (entries) {
+    visible = entries[0].isIntersecting;
+    if (visible && !timer) timer = setTimeout(tick, 600);
+  }, { threshold: 0.3 }).observe(root);
+})();
+</script>
 </body>
 </html>
