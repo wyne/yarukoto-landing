@@ -272,9 +272,7 @@ h2 {
 .device img { display: block; width: 100%; height: auto; }
 
 /* ---------- hero scene ----------
-   A rendered desk scene going from day to night. On a wide screen with a fine
-   pointer the hero pins while you scroll and the scroll position scrubs the
-   video (.is-scrub, set by the script). Everywhere else it plays once. */
+   A rendered desk scene that loops from day to night and back. */
 .hero-scene { margin: 0; }
 .hero-scene video {
   display: block;
@@ -302,16 +300,6 @@ h2 {
 .hero-scene-caption span + span { opacity: 0; }
 .hero-scene.is-night .hero-scene-caption span:first-child { opacity: 0; }
 .hero-scene.is-night .hero-scene-caption span + span { opacity: 1; }
-
-.hero.is-scrub { height: 230vh; }
-.hero.is-scrub .hero-grid {
-  position: sticky;
-  top: 0;
-  min-height: 100vh;
-  align-items: center;
-  padding-bottom: 40px;
-}
-.hero.is-scrub .hero-copy { padding-top: 0; }
 
 /* ---------- sections ---------- */
 .section { padding-top: 120px; }
